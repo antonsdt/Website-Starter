@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Ein neutraler, hochwertiger Vite-Starter mit Vanilla HTML, CSS, JavaScript und Anime.js." />
+    <title>Website Starter</title>
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#">
+          <img src="/src/assets/logo.svg" alt="" width="28" height="28" />
+          <span>Starter</span>
+        </a>
+        <nav class="nav" aria-label="Hauptnavigation">
+          <a href="#features">Features</a>
+          <a href="#about">Über</a>
+          <a href="#contact" class="button button--primary">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero container">
+        <p class="eyebrow" data-animate>Website Starter</p>
+        <h1 data-animate>Ein sauberer Ausgangspunkt<br />für jedes Projekt.</h1>
+        <p class="lede" data-animate>
+          Vite, Vanilla JavaScript und Anime.js &mdash; minimal, schnell und bereit, in jede
+          Richtung erweitert zu werden.
+        </p>
+        <div class="hero-actions" data-animate>
+          <button class="button button--primary" type="button">Loslegen</button>
+          <a class="button button--ghost" href="#features">Mehr erfahren</a>
+        </div>
+      </section>
+
+      <section class="features container" id="features" aria-label="Features">
+        <article class="card" data-animate>
+          <div class="card-icon" aria-hidden="true">⚡</div>
+          <h2>Schnell</h2>
+          <p>Vite-Build mit sofortigem Hot-Module-Replacement während der Entwicklung.</p>
+        </article>
+        <article class="card" data-animate>
+          <div class="card-icon" aria-hidden="true">◆</div>
+          <h2>Flexibel</h2>
+          <p>Reines HTML, CSS und JavaScript &mdash; ganz ohne Framework-Overhead.</p>
+        </article>
+        <article class="card" data-animate>
+          <div class="card-icon" aria-hidden="true">✦</div>
+          <h2>Belebt</h2>
+          <p>Dezente, zweckmäßige Anime.js-Animationen für ein poliertes Gefühl.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2026 Website Starter.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
