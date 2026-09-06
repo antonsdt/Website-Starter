@@ -1,0 +1,28 @@
+/* -----------------------------------------------------------------------
+   Fußzeile
+   ----------------------------------------------------------------------- */
+.site-footer {
+  background: var(--ink);
+  color: rgba(250, 246, 238, 0.7);
+  padding-block: 48px 32px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.site-footer .brand {
+  color: var(--paper);
+}
+
+.site-footer .brand span {
+  color: var(--gold);
+}
+
+.site-footer .mono {
+  color: rgba(250, 246, 238, 0.5);
+}

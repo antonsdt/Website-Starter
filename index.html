@@ -4,9 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="Ein neutraler, hochwertiger Vite-Starter mit Vanilla HTML, CSS, JavaScript und Anime.js." />
-    <title>Website Starter</title>
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#F2EDE2" />
+    <meta
+      name="description"
+      content="Malereibetrieb Scheither in Lübeck: Malerarbeiten, Altbausanierung und Denkmalpflege seit 1864. Vier Generationen Farbe, eine Handschrift."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Malereibetrieb Scheither" />
+    <meta property="og:title" content="Malereibetrieb Scheither — Malermeister in Lübeck seit 1864" />
+    <meta
+      property="og:description"
+      content="Malerarbeiten, Altbausanierung und Denkmalpflege in Lübeck. Vier Generationen Farbe, eine Handschrift."
+    />
+    <meta property="og:locale" content="de_DE" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Malereibetrieb Scheither — Malermeister in Lübeck seit 1864" />
+    <meta
+      name="twitter:description"
+      content="Malerarbeiten, Altbausanierung und Denkmalpflege in Lübeck. Vier Generationen Farbe, eine Handschrift."
+    />
+
+    <title>Malereibetrieb Scheither — Malermeister in Lübeck seit 1864</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
     <script>
       document.documentElement.classList.add('js');
     </script>
@@ -14,59 +42,335 @@
   <body>
     <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
+    <!-- =====================================================================
+         Kopfleiste
+         ================================================================== -->
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#">
-          <img src="/src/assets/logo.svg" alt="" width="28" height="28" />
-          <span>Starter</span>
-        </a>
-        <nav class="nav" aria-label="Hauptnavigation">
-          <a href="#features">Features</a>
-          <a href="#about">Über</a>
-          <a href="#contact" class="button button--primary">Kontakt</a>
+        <a class="brand" href="#top">Malerei <span>Scheither</span></a>
+        <nav aria-label="Hauptnavigation">
+          <ul class="nav">
+            <li><a href="#geschichte">Geschichte</a></li>
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#referenzen">Referenzen</a></li>
+            <li class="nav-keep"><a href="#kontakt" class="nav-cta">Beratung anfragen</a></li>
+          </ul>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero container">
-        <p class="eyebrow" data-animate>Website Starter</p>
-        <h1 data-animate>Ein sauberer Ausgangspunkt<br />für jedes Projekt.</h1>
-        <p class="lede" data-animate>
-          Vite, Vanilla JavaScript und Anime.js &mdash; minimal, schnell und bereit, in jede
-          Richtung erweitert zu werden.
-        </p>
-        <div class="hero-actions" data-animate>
-          <button class="button button--primary" type="button">Loslegen</button>
-          <a class="button button--ghost" href="#features">Mehr erfahren</a>
+      <span id="top"></span>
+
+      <!-- ===================================================================
+           Hero mit Farbfächer-Timeline
+           ================================================================ -->
+      <section class="hero">
+        <div class="container hero-inner">
+          <p class="eyebrow mono" data-animate>Seit 1864 in Lübeck-Schlutup</p>
+          <h1 class="hero-title" data-animate>
+            Vier Generationen Farbe.<br /><em>Eine Handschrift.</em>
+          </h1>
+
+          <div class="hero-foot">
+            <div class="hero-lede">
+              <p class="hero-sub" data-animate>
+                Der Malereibetrieb Scheither steht seit 160 Jahren für Malerarbeiten,
+                Altbausanierung und Denkmalpflege in Lübeck und Umgebung — geführt mit dem
+                gleichen Qualitätsanspruch wie am ersten Tag.
+              </p>
+              <div class="hero-actions" data-animate>
+                <a href="#kontakt" class="button button--primary">Kostenlose Beratung</a>
+                <a href="#geschichte" class="button button--ghost">Unsere Geschichte</a>
+              </div>
+            </div>
+
+            <div class="swatch-card" data-animate>
+              <span class="mono">Firmenfarbfächer — 4 Generationen</span>
+            <ul class="swatch-strip" data-swatch-strip>
+              <li class="swatch swatch--1">
+                <span class="swatch-color"></span>
+                <span>
+                  <span class="swatch-name">Gerhard H. Scheither</span>
+                  <span class="swatch-role">Gründung, 1864</span>
+                </span>
+                <span class="swatch-year">01</span>
+              </li>
+              <li class="swatch swatch--2">
+                <span class="swatch-color"></span>
+                <span>
+                  <span class="swatch-name">Heinrich Scheither</span>
+                  <span class="swatch-role">2. Generation</span>
+                </span>
+                <span class="swatch-year">02</span>
+              </li>
+              <li class="swatch swatch--3">
+                <span class="swatch-color"></span>
+                <span>
+                  <span class="swatch-name">Rudolf &amp; Gerhard Scheither</span>
+                  <span class="swatch-role">3. Generation</span>
+                </span>
+                <span class="swatch-year">03</span>
+              </li>
+              <li class="swatch swatch--4">
+                <span class="swatch-color"></span>
+                <span>
+                  <span class="swatch-name">Rainer Aichbauer</span>
+                  <span class="swatch-role">Heute, e.K.</span>
+                </span>
+                <span class="swatch-year">04</span>
+              </li>
+            </ul>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="features container" id="features" aria-label="Features">
-        <article class="card" data-animate>
-          <div class="card-icon" aria-hidden="true">⚡</div>
-          <h2>Schnell</h2>
-          <p>Vite-Build mit sofortigem Hot-Module-Replacement während der Entwicklung.</p>
-        </article>
-        <article class="card" data-animate>
-          <div class="card-icon" aria-hidden="true">◆</div>
-          <h2>Flexibel</h2>
-          <p>Reines HTML, CSS und JavaScript &mdash; ganz ohne Framework-Overhead.</p>
-        </article>
-        <article class="card" data-animate>
-          <div class="card-icon" aria-hidden="true">✦</div>
-          <h2>Belebt</h2>
-          <p>Dezente, zweckmäßige Anime.js-Animationen für ein poliertes Gefühl.</p>
-        </article>
+      <!-- ===================================================================
+           Vertrauensleiste
+           ================================================================ -->
+      <div class="trust">
+        <div class="container">
+          <ul class="trust-list">
+            <li class="trust-item" data-reveal>
+              <span class="dot" aria-hidden="true"></span>
+              Ältester Malerbetrieb im Bezirk der Handwerkskammer Lübeck
+            </li>
+            <li class="trust-item" data-reveal>
+              <span class="dot" aria-hidden="true"></span>
+              Fachbetrieb für Altbausanierung &amp; Denkmalpflege
+            </li>
+            <li class="trust-item" data-reveal>
+              <span class="dot" aria-hidden="true"></span>
+              Faire Preise, feste Zusagen
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           Geschichte
+           ================================================================ -->
+      <section id="geschichte" class="section history">
+        <div class="container">
+          <div class="history-top">
+            <div class="section-head">
+              <span class="mono" data-reveal>160 Jahre Firmengeschichte</span>
+              <h2 data-reveal>Was 1864 begann, führen wir heute fort</h2>
+              <p data-reveal>
+                Vier Generationen der Familie Scheither haben diesen Betrieb geprägt. Seit
+                einigen Jahren führt Rainer Aichbauer das Unternehmen im Sinne dieser
+                Tradition weiter.
+              </p>
+            </div>
+
+            <!-- Die Jahreszahl trägt den Abschnitt als Bild, nicht als Text:
+                 vorgelesen würde sie die Dachzeile darüber nur wiederholen. -->
+            <p class="history-figure" data-reveal aria-hidden="true">
+              <span class="history-figure-value">160</span>
+              <span class="history-figure-label mono">Jahre</span>
+            </p>
+          </div>
+          <ol class="timeline" data-timeline>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-year">1864</span>
+              <h3>Gründung durch Gerhard H. Scheither</h3>
+              <p>
+                Als traditioneller Handwerksbetrieb spezialisiert auf Malerarbeiten und
+                Lackierungen für Privatkunden und Gewerbe.
+              </p>
+            </li>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-year">Folgejahre</span>
+              <h3>Heinrich, Rudolf &amp; Gerhard Scheither</h3>
+              <p>
+                Drei weitere Generationen der Familie führen den Betrieb fort und bauen den Ruf
+                als verlässlicher Fachbetrieb in Lübeck aus.
+              </p>
+            </li>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-year">Heute</span>
+              <h3>Unter Rainer Aichbauer</h3>
+              <p>
+                Der älteste Malerbetrieb im Bezirk der Handwerkskammer Lübeck – mit demselben
+                Qualitätsanspruch, modernen Techniken und persönlicher Beratung.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           Leistungen
+           ================================================================ -->
+      <section id="leistungen" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="mono" data-reveal>Leistungen</span>
+            <h2 data-reveal>Handwerk für jede Fassade, jeden Raum</h2>
+            <p data-reveal>
+              Von der klassischen Malerarbeit bis zur sensiblen Sanierung historischer
+              Bausubstanz.
+            </p>
+          </div>
+          <ul class="service-rows" data-services>
+            <li class="service-row service-row--featured" data-reveal>
+              <span class="service-chip" style="background: var(--ochre)"></span>
+              <div>
+                <h3>Altbausanierung &amp; Denkmalpflege</h3>
+                <span class="tag">Alleinstellungsmerkmal</span>
+              </div>
+              <p>
+                Fachgerechte Sanierung historischer Gebäude — mit Gespür für alte Bausubstanz
+                und Material, gewachsen aus 160 Jahren Erfahrung mit Lübecker Altbauten.
+              </p>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-chip" style="background: var(--swatch-2)"></span>
+              <div><h3>Malerarbeiten Innen &amp; Außen</h3></div>
+              <p>Anstriche, Tapezierarbeiten und Gestaltung für Wohn- und Gewerberäume.</p>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-chip" style="background: var(--shutter-green)"></span>
+              <div><h3>Fassaden &amp; Wärmedämmung</h3></div>
+              <p>Fassadenanstriche und Vollwärmeschutz für dauerhaften Werterhalt.</p>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-chip" style="background: var(--swatch-3)"></span>
+              <div><h3>Schimmelbeseitigung</h3></div>
+              <p>Nachhaltige Beseitigung und Vorbeugung — sauber und gründlich.</p>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-chip" style="background: #8c9b8a"></span>
+              <div><h3>Wasserschadenbeseitigung</h3></div>
+              <p>Schnelle, fachgerechte Instandsetzung nach Wasserschäden.</p>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-chip" style="background: var(--swatch-1)"></span>
+              <div><h3>Tapeten &amp; Spachteltechniken</h3></div>
+              <p>Von klassisch bis kreativ — individuelle Wandgestaltung nach Wunsch.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           Referenzen
+           ================================================================ -->
+      <section id="referenzen" class="section references">
+        <div class="container">
+          <div class="section-head">
+            <span class="mono" data-reveal>Referenzen</span>
+            <h2 data-reveal>Projekte aus Lübeck &amp; Umgebung</h2>
+            <p data-reveal>
+              Sobald die ersten Baustellenfotos vorliegen, ersetzen sie die Platzhalter unten
+              eins zu eins.
+            </p>
+          </div>
+          <ul class="ref-grid" data-references>
+            <li class="ref-card" data-reveal>
+              <div class="ref-img">
+                <span class="mono">Foto folgt</span>
+                <span class="placeholder-note">Fassadensanierung, Lübeck Altstadt</span>
+              </div>
+              <div class="ref-body">
+                <span class="ref-index" aria-hidden="true">01</span>
+                <h3>Altstadt</h3>
+                <p>Denkmalgerechte Instandsetzung einer Hausfassade.</p>
+              </div>
+            </li>
+            <li class="ref-card" data-reveal>
+              <div class="ref-img">
+                <span class="mono">Foto folgt</span>
+                <span class="placeholder-note">Innenanstrich, Einfamilienhaus</span>
+              </div>
+              <div class="ref-body">
+                <span class="ref-index" aria-hidden="true">02</span>
+                <h3>Wohnhaus</h3>
+                <p>Komplette Neugestaltung von Wand- und Deckenflächen.</p>
+              </div>
+            </li>
+            <li class="ref-card" data-reveal>
+              <div class="ref-img">
+                <span class="mono">Foto folgt</span>
+                <span class="placeholder-note">Schimmelsanierung, Mietwohnung</span>
+              </div>
+              <div class="ref-body">
+                <span class="ref-index" aria-hidden="true">03</span>
+                <h3>Mietwohnung</h3>
+                <p>Nachhaltige Beseitigung inkl. Ursachenanalyse.</p>
+              </div>
+            </li>
+          </ul>
+          <p class="ref-note" data-reveal>
+            <strong>Für dich als nächster Schritt:</strong> 2–3 Handyfotos von aktuellen oder
+            letzten Baustellen reichen für den Start — Vorher/Nachher wirkt am stärksten.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           Kontakt
+           ================================================================ -->
+      <section id="kontakt" class="section contact">
+        <div class="container contact-grid">
+          <div class="contact-info">
+            <span class="mono" data-reveal>Kontakt</span>
+            <h2 data-reveal>Lassen Sie uns über<br />Ihr Projekt sprechen.</h2>
+            <p data-reveal>
+              Unverbindlich, persönlich und ohne Verkaufsdruck — wie es sich für einen
+              Familienbetrieb gehört.
+            </p>
+            <dl class="info-list">
+              <div class="info-row" data-reveal>
+                <dt>Adresse</dt>
+                <dd>Schlutuper Kirchstr. 7, 23568 Lübeck</dd>
+              </div>
+              <div class="info-row" data-reveal>
+                <dt>Telefon</dt>
+                <dd><a href="tel:+4945186 5874">0451 86 58 74</a></dd>
+              </div>
+              <div class="info-row" data-reveal>
+                <dt>Öffnungszeiten</dt>
+                <dd>Mo–Do 7–16 Uhr, Fr 7–14 Uhr</dd>
+              </div>
+            </dl>
+          </div>
+
+          <form class="contact-form" data-reveal novalidate>
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Ihr Name" required />
+            </div>
+            <div class="field">
+              <label for="email">E-Mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="ihre@email.de" required />
+            </div>
+            <div class="field">
+              <label for="msg">Ihr Anliegen</label>
+              <textarea id="msg" name="msg" placeholder="Beschreiben Sie kurz Ihr Projekt …" required></textarea>
+            </div>
+            <button class="button button--primary" type="submit">Anfrage senden</button>
+            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </section>
     </main>
 
+    <!-- =====================================================================
+         Fußzeile
+         ================================================================== -->
     <footer class="site-footer">
-      <div class="container">
-        <p>&copy; 2026 Website Starter.</p>
+      <div class="container footer-inner">
+        <span class="brand">Malerei <span>Scheither</span></span>
+        <span class="mono">Seit 1864 · Lübeck-Schlutup</span>
       </div>
     </footer>
 
-    <script type="module" src="/src/main.js"></script>
+    <script
+      type="module"
+      src="/src/main.js"
+      onerror="document.documentElement.classList.remove('js')"
+    ></script>
   </body>
 </html>

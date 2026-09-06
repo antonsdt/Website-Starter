@@ -1,0 +1,62 @@
+/* -----------------------------------------------------------------------
+   Buttons
+   ----------------------------------------------------------------------- */
+.button {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  /* Nur transform und box-shadow animieren: beide laufen auf der GPU. */
+  transition:
+    transform 160ms var(--ease-out),
+    box-shadow 200ms var(--ease-out),
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.button--primary {
+  background: var(--ochre);
+  color: var(--paper);
+}
+
+.button--ghost {
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+}
+
+/* Hover nur dort, wo es wirklich einen Zeiger gibt.
+   Auf Touchgeräten löst ein Tap sonst den Hover-Zustand mit aus. */
+@media (hover: hover) and (pointer: fine) {
+  .button--primary:hover {
+    background: var(--ochre-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(140, 58, 43, 0.28);
+  }
+
+  .button--ghost:hover {
+    background: var(--ink);
+    color: var(--paper);
+    transform: translateY(-2px);
+  }
+}
+
+/* Druckfeedback: die Schaltfläche antwortet sofort auf den Klick. */
+.button:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
+}
+
+@media (pointer: coarse) {
+  .button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

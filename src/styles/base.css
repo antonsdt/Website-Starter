@@ -1,0 +1,169 @@
+/* -----------------------------------------------------------------------
+   Reset & Grundlagen
+   ----------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100svh;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+/* -----------------------------------------------------------------------
+   Hilfsklassen
+   ----------------------------------------------------------------------- */
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* -----------------------------------------------------------------------
+   Fokus & Skip-Link
+   ----------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--ochre);
+  color: var(--paper);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform 160ms var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* -----------------------------------------------------------------------
+   Abschnittskopf
+   ----------------------------------------------------------------------- */
+.section-head {
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+
+.section-head .mono {
+  color: var(--ochre);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.section-head h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  line-height: 1.15;
+}
+
+.section-head p {
+  color: var(--ink-soft);
+  margin-top: 16px;
+  font-size: 1.02rem;
+}
+
+/* -----------------------------------------------------------------------
+   Ankersprünge unter der klebenden Kopfleiste
+
+   Ohne diesen Abstand landet die Überschrift eines angesprungenen
+   Abschnitts hinter der Leiste. Der Wert entspricht ihrer Höhe plus etwas
+   Luft.
+   ----------------------------------------------------------------------- */
+:target,
+.section,
+#top,
+#kontakt,
+#leistungen,
+#referenzen,
+#geschichte {
+  scroll-margin-top: 96px;
+}
+
+@media (max-width: 480px) {
+  :target,
+  .section,
+  #top,
+  #kontakt,
+  #leistungen,
+  #referenzen,
+  #geschichte {
+    scroll-margin-top: 80px;
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Auszeichnungszeilen
+
+   Die weite Sperrung ist die editoriale Handschrift der Seite — sie sitzt
+   ausschließlich auf kurzen Versalzeilen. Laufende Texte und große Grade
+   bleiben unberührt.
+   ----------------------------------------------------------------------- */
+.section-head .mono,
+.swatch-card > .mono {
+  letter-spacing: 0.18em;
+}

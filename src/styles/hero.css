@@ -1,0 +1,181 @@
+/* -----------------------------------------------------------------------
+   Hero mit Farbfächer-Timeline
+   ----------------------------------------------------------------------- */
+.hero {
+  padding-block: 104px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Die Überschrift steht über die volle Breite, alles Weitere hängt darunter
+   in den Ecken — statt Text links, Karte rechts. Das gibt der Zeile den
+   Raum, den sie bei dieser Größe braucht. */
+.hero-inner {
+  display: block;
+}
+
+.hero-foot {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 400px);
+  gap: 56px;
+  align-items: start;
+  margin-top: 44px;
+}
+
+@media (max-width: 900px) {
+  .hero-foot {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-top: 36px;
+  }
+}
+
+/* Die weite Sperrung sitzt hier, nicht in der Überschrift: kleine
+   Versalien vertragen sie, ein 5rem-Display nicht. */
+.eyebrow {
+  color: var(--ochre);
+  font-weight: 600;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 0.18em;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--ochre);
+  display: inline-block;
+  /* Der Strich zieht sich beim Laden auf; siehe animations/hero.js */
+  transform-origin: left;
+}
+
+/* Bei dieser Größe wird der Zeilenabstand zum Problem, nicht der Schriftgrad:
+   knapp unter 1 gesetzt, damit die zwei Zeilen als ein Block lesen. Die
+   Laufweite geht ins Minus — großer Grad braucht enger, nicht weiter. */
+.hero-title {
+  font-size: clamp(2.6rem, 7.4vw, 5.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin-bottom: 0;
+  text-wrap: balance;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--ochre);
+}
+
+.hero-sub {
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: 28px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* -----------------------------------------------------------------------
+   Farbfächer-Karte
+   ----------------------------------------------------------------------- */
+.swatch-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.swatch-card > .mono {
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.swatch-strip {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  list-style: none;
+}
+
+.swatch {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  /* Die Karten werden in hero.js einzeln eingeblendet. */
+  will-change: transform, opacity;
+}
+
+.swatch:last-child {
+  border-bottom: none;
+}
+
+.swatch-color {
+  width: 44px;
+  height: 44px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* Dieselbe Ziffernsprache wie bei den Referenzen. */
+.swatch-year {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0.75;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Beide sind Inline-Elemente und flossen deshalb in eine Zeile — bei der
+   schmaleren Karte brach die Rolle mitten im Namen um. */
+.swatch-name {
+  display: block;
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+
+.swatch-role {
+  display: block;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  line-height: 1.3;
+}
+
+.swatch--1 {
+  background: var(--swatch-1);
+  color: #3a2f22;
+}
+
+.swatch--2 {
+  background: var(--swatch-2);
+  color: #3a2f22;
+}
+
+.swatch--3 {
+  background: var(--swatch-3);
+  color: #fbf3e6;
+}
+
+.swatch--4 {
+  background: var(--swatch-4);
+  color: #fbf3e6;
+}
+
+.swatch--4 .swatch-color {
+  background: #fff;
+}
