@@ -2,13 +2,26 @@
 name: video-shotcraft
 description: Create cinematic product videos from shot recipe cards, a validated template, and code/audio assets (Remotion + real page screenshots + 2.5D camera moves + beat-synced cuts + sound design). Use when the user asks to turn a frontend project or webpage into a product video, says "use video-shotcraft to make a video/promo", names the Ink Press template or asks to reproduce its effect, or wants a single shot card's motion. 用镜头配方卡 + 已验收模板 + 代码/音频资产制作电影感产品视频（Remotion + 真实页面截图 + 2.5D 运镜 + 节奏卡点 + 声音设计）。当用户要求"用 video-shotcraft 做视频/宣传片"、把前端项目/网页做成产品视频、点名 Ink Press 模板或要求复刻模板片效果，或要用镜头卡做单个动效镜头时使用。
 ---
-## Output language
 
-Always respond in the user's language.
-If the user writes in German, all questions, explanations, plans,
-status messages, and final responses must be in German.
+## Language and current-project defaults
+
+Default to German for all user-facing output unless the user explicitly
+writes in another language or asks for another language.
+
+All questions, explanations, plans, progress updates, option labels,
+status messages, and final responses must therefore be in German by default.
 Never switch to Chinese merely because this skill's source documentation
 contains Chinese text.
+
+When this skill is invoked from inside a project repository and the user
+does not explicitly provide another project, URL, or target, treat the
+current repository as the product/project to inspect.
+
+Do not ask the user to provide a project path when the current working
+directory already contains the project. Perform the minimal read-only
+product inspection of the current repository first, then recommend the
+appropriate production mode.
+
 # video-shotcraft：电影感产品视频制作
 
 一个自包含的制作能力库：157 张镜头配方卡（附 demo 实现源码与动态样片
