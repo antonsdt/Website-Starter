@@ -70,6 +70,17 @@ function setStatus(status, message, tone) {
   if (!status) return;
   status.textContent = message;
   status.dataset.tone = tone;
+
+  if (prefersReducedMotion()) return;
+
+  /* Die Meldung erscheint statt zu springen — kurzes Feedback in dem
+     Moment, in dem der Nutzer gerade auf eine Antwort wartet. */
+  animate(status, {
+    opacity: [0, 1],
+    translateY: [6, 0],
+    duration: 260,
+    ease: easeOut,
+  });
 }
 
 /* Kurzer seitlicher Anstoß: zeigt auf das Feld, ohne es zu verstecken. */
