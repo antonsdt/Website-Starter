@@ -11,26 +11,38 @@
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from 'remotion';
 import { FONT_DISPLAY, FONT_MONO, PAPER, INK, INK_SOFT, OCHRE } from './tokens';
+// isVertical: narrows/wraps the wordmark, tagline and address for the 9:16
+// cutdown, whose ~608px-wide centre-crop otherwise runs these full-width
+// lines off both edges (flagged in independent review).
+import { useIsVertical } from './useFormat';
 
 export const OUTRO_DURATION = 260;
 
 const HIT = 28;
 const SNAP = 72;
-const AX = 10;
-const AY = 4;
+// misregistration offset: the recipe card documents ~5px as "barely
+// visible" and 16px/32px total separation as the tested, working minimum
+// for this effect to read as an intentional print misregistration rather
+// than a rendering glitch -- keep at least that floor.
+const AX = 16;
+const AY = 7;
 const OMEGA = (2 * Math.PI) / 18;
 const TAU = 60;
 
 const WORDMARK = 'Malerei Scheither';
 
-const Plate: React.FC<{ color: string; dx: number; dy: number }> = ({ color, dx, dy }) => (
-  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `translate(${dx}px, ${dy}px)`, mixBlendMode: 'multiply' }}>
-    <div style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 132, color, letterSpacing: '-0.01em', whiteSpace: 'nowrap' }}>{WORDMARK}</div>
-  </div>
-);
+const Plate: React.FC<{ color: string; dx: number; dy: number }> = ({ color, dx, dy }) => {
+  const isVertical = useIsVertical();
+  return (
+    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `translate(${dx}px, ${dy}px)`, mixBlendMode: 'multiply' }}>
+      <div style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: isVertical ? 88 : 132, color, letterSpacing: '-0.01em', whiteSpace: isVertical ? 'normal' : 'nowrap', textAlign: 'center', maxWidth: isVertical ? 480 : undefined }}>{WORDMARK}</div>
+    </div>
+  );
+};
 
 export const Outro: React.FC = () => {
   const frame = useCurrentFrame();
+  const isVertical = useIsVertical();
 
   const entering = frame >= 20 && frame < HIT;
   const split = frame >= HIT && frame < SNAP;
@@ -51,10 +63,10 @@ export const Outro: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: PAPER, overflow: 'hidden' }}>
       <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 40 }}>
-        <div style={{ position: 'relative', width: 1920, height: 220 }}>
+        <div style={{ position: 'relative', width: isVertical ? 540 : 1920, height: isVertical ? 190 : 220 }}>
           {showSingle && (
             <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `translateX(${entering || frame < 20 ? slideX : 0}px) scale(${pulse})`, transformOrigin: 'center center' }}>
-              <div style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 132, color: INK, letterSpacing: '-0.01em', whiteSpace: 'nowrap' }}>{WORDMARK}</div>
+              <div style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: isVertical ? 88 : 132, color: INK, letterSpacing: '-0.01em', whiteSpace: isVertical ? 'normal' : 'nowrap', textAlign: 'center', maxWidth: isVertical ? 480 : undefined }}>{WORDMARK}</div>
             </div>
           )}
           {split && (
@@ -65,7 +77,7 @@ export const Outro: React.FC = () => {
           )}
         </div>
 
-        <div style={{ marginTop: 26, opacity: taglineT, transform: `translateY(${(1 - taglineT) * 10}px)`, fontFamily: FONT_MONO, fontSize: 24, letterSpacing: '0.1em', textTransform: 'uppercase', color: OCHRE, textAlign: 'center' }}>
+        <div style={{ marginTop: 26, opacity: taglineT, transform: `translateY(${(1 - taglineT) * 10}px)`, fontFamily: FONT_MONO, fontSize: isVertical ? 20 : 24, letterSpacing: '0.1em', textTransform: 'uppercase', color: OCHRE, textAlign: 'center', maxWidth: isVertical ? 480 : undefined }}>
           Altbausanierung &amp; Denkmalpflege · seit 1864
         </div>
 
@@ -73,7 +85,7 @@ export const Outro: React.FC = () => {
           <div style={{ display: 'inline-block', fontFamily: FONT_MONO, fontSize: 20, letterSpacing: '0.08em', textTransform: 'uppercase', background: OCHRE, color: '#fdf8ee', padding: '20px 40px', borderRadius: 3 }}>
             Kostenlose Beratung
           </div>
-          <div style={{ marginTop: 26, fontFamily: FONT_MONO, fontSize: 20, letterSpacing: '0.04em', color: INK_SOFT }}>
+          <div style={{ marginTop: 26, fontFamily: FONT_MONO, fontSize: isVertical ? 17 : 20, letterSpacing: '0.04em', color: INK_SOFT, maxWidth: isVertical ? 460 : undefined, marginLeft: 'auto', marginRight: 'auto' }}>
             Schlutuper Kirchstr. 7, 23568 Lübeck · 0451 86 58 74
           </div>
         </div>

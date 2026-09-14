@@ -8,6 +8,7 @@
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing, spring } from 'remotion';
 import { FONT_DISPLAY, FONT_MONO, SHUTTER_GREEN, GOLD, OCHRE } from './tokens';
+import { useIsVertical } from './useFormat';
 
 export const GENERATIONS_TIMELINE_DURATION = 200;
 
@@ -68,6 +69,7 @@ const TickStop: React.FC<{ i: number; frame: number }> = ({ i, frame }) => {
 
 export const GenerationsTimeline: React.FC = () => {
   const frame = useCurrentFrame();
+  const isVertical = useIsVertical();
   const camX = camXAt(frame);
   const zoom = interpolate(frame, [TRAVEL_END, ZOOM_END], [1, 1.22], { easing: Easing.out(Easing.cubic), extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
@@ -95,12 +97,15 @@ export const GenerationsTimeline: React.FC = () => {
         </div>
       </div>
 
-      {/* final push-in overlay: the real "160 Jahre" headline moment */}
+      {/* final push-in overlay: the real "160 Jahre" headline moment. The
+          closing sentence's maxWidth narrows in the 9:16 cutdown so it wraps
+          inside the crop's ~608px-wide safe window instead of running off
+          both edges as one long line (flagged in independent review). */}
       <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', opacity: headT, transform: `translateY(${(1 - headT) * 14}px)`, pointerEvents: 'none' }}>
-        <div style={{ textAlign: 'center', maxWidth: 1300 }}>
+        <div style={{ textAlign: 'center', maxWidth: isVertical ? 500 : 1300 }}>
           <div style={{ fontFamily: FONT_DISPLAY, fontSize: 220, fontWeight: 600, color: GOLD, lineHeight: 1 }}>160</div>
           <div style={{ fontFamily: FONT_MONO, fontSize: 22, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#dcd6c6', marginTop: -6 }}>Jahre</div>
-          <div style={{ fontFamily: FONT_DISPLAY, fontSize: 46, fontWeight: 600, color: '#f4efe3', marginTop: 30, lineHeight: 1.2 }}>
+          <div style={{ fontFamily: FONT_DISPLAY, fontSize: isVertical ? 38 : 46, fontWeight: 600, color: '#f4efe3', marginTop: 30, lineHeight: 1.25 }}>
             Was 1864 begann, führen wir heute fort.
           </div>
         </div>

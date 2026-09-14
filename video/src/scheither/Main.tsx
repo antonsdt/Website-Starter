@@ -77,6 +77,9 @@ export const ScheitherMain: React.FC = () => {
       <Sequence from={SHOTS.usp.from + SHOTS.usp.duration - 7} durationInFrames={14}>
         <FlashCut duration={14} />
       </Sequence>
+      <Sequence from={SHOTS.trust.from + SHOTS.trust.duration - 7} durationInFrames={14}>
+        <FlashCut duration={14} />
+      </Sequence>
 
       {SFX.map((s, i) => (
         <Sequence key={i} from={s.from} durationInFrames={s.durationInFrames}>
@@ -96,15 +99,22 @@ export const ScheitherMain: React.FC = () => {
 // point fixed while stretching height 1080->1920 (full vertical extent, no
 // vertical crop) and width 1920->3413 (of which only the centre 1080px
 // output window is visible — i.e. a 607.5px-wide centre crop of the source).
-// KNOWN LIMITATION: shots 1, 3, 4, 5, 6 are typographic/centred and survive
-// this crop cleanly. Shot 2 (HeroSpotlight)'s final pulled-back frame does
-// not: the real hero copy it reveals is baked into the page screenshot at
-// its true (wide) layout position -- headline starting at page x~140, card
-// ending at x~1488 -- wider than any single framing can keep inside a 608px
-// window without either cropping this text/CTA or shrinking the 16:9
-// master's own framing to do it (tried; reverted -- see HeroSpotlight.tsx).
-// Flagged to the user rather than shipped silently; a proper fix needs a
-// second, vertical-specific camera path through that shot.
+// Shots 1, 3, 4, 5, 6 read a shared useIsVertical() flag (useFormat.ts) and
+// narrow/shrink/wrap their text so every line stays inside the crop's
+// ~608px-wide safe window in that format (an earlier pass only did this for
+// the hero shot; an independent review caught that shots 1/3/5/6 were also
+// running full-width lines off both edges, and USP's longest single word
+// alone exceeded the crop width -- all fixed per-shot, see each file).
+//
+// KNOWN LIMITATION (kept, not fixable the same way): shot 2 (HeroSpotlight)'s
+// final pulled-back frame reveals the real hero copy baked into the page
+// screenshot at its true (wide) layout position -- headline starting at page
+// x~140, card ending at x~1488 -- wider than any single camera framing can
+// keep inside a 608px window without either cropping this text/CTA or
+// shrinking the 16:9 master's own framing to do it (tried; reverted -- see
+// HeroSpotlight.tsx). This one is a real screenshot, not our own typography,
+// so it can't be re-wrapped the way the other shots were. A proper fix needs
+// a second, vertical-specific camera path through that shot.
 export const ScheitherMainVertical: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: PAPER, overflow: 'hidden' }}>
