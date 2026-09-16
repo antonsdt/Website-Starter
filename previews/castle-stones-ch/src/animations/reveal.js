@@ -16,7 +16,7 @@ import { easeOut, prefersReducedMotion } from './env.js';
 const GROUP_SELECTOR = [
   '.section-head',
   '.trust-list',
-  '[data-timeline]',
+  '.process-grid',
   '[data-services]',
   '[data-references]',
   '.info-list',

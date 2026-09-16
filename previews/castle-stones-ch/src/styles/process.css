@@ -1,0 +1,58 @@
+/* -----------------------------------------------------------------------
+   Entstehung: drei gleichrangige Schritte nebeneinander
+
+   Bewusst kein vertikaler Zeitstrahl mit Chronologie-Anspruch — die drei
+   Schritte (Vorbild, Herstellung, Ergebnis) sind kein Firmenverlauf,
+   sondern ein Verfahren. Nebeneinander gleichwertig, nicht untereinander
+   als Geschichte erzählt.
+   ----------------------------------------------------------------------- */
+.process {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 44px;
+  list-style: none;
+  margin-top: 8px;
+}
+
+@media (max-width: 760px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+.process-step {
+  padding-top: 24px;
+  border-top: 3px solid var(--ochre);
+  /* Wird beim Scrollen gestaffelt eingeblendet; siehe animations/reveal.js */
+  will-change: transform, opacity;
+}
+
+.process-step-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--ochre);
+  line-height: 1;
+  margin-bottom: 14px;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.process-step h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.process-step p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  max-width: 42ch;
+}

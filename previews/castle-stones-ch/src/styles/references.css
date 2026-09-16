@@ -1,148 +1,96 @@
 /* -----------------------------------------------------------------------
-   Referenzen
+   Projekte: flaches, architektonisches Raster
+
+   Keine Schieflage, keine Karteikarten-Optik — die Referenzen liegen
+   gerade nebeneinander, wie Aufnahmen in einer Bestandsdokumentation.
    ----------------------------------------------------------------------- */
-.references {
-  background: var(--paper);
+.projects {
+  background: var(--cream);
   border-top: 1px solid var(--line);
 }
 
-.ref-grid {
+.project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
   list-style: none;
 }
 
 @media (max-width: 760px) {
-  .ref-grid {
+  .project-grid {
     grid-template-columns: 1fr;
-    max-width: 340px;
-    margin-inline: auto;
   }
 }
 
-.ref-card {
+.project-card {
   background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 14px 14px 20px;
-  box-shadow: var(--shadow-ref);
-  /* Die leichte Schieflage gehört zum Entwurf: die Karten liegen wie
-     Musterkarten auf dem Tisch. Sie wird in der Animation mitgeführt. */
-  --tilt: 0deg;
-  transform: rotate(var(--tilt));
-  transition:
-    transform 300ms var(--ease-out),
-    box-shadow 300ms var(--ease-out);
   will-change: transform, opacity;
 }
 
-.ref-card:nth-child(1) {
-  --tilt: -1.4deg;
-}
-
-.ref-card:nth-child(2) {
-  --tilt: 0.8deg;
-}
-
-.ref-card:nth-child(3) {
-  --tilt: -0.6deg;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .ref-card:hover {
-    transform: rotate(0deg) translateY(-4px);
-    box-shadow: 0 22px 44px rgba(37, 31, 26, 0.13);
-  }
-}
-
-.ref-img {
-  height: 210px;
-  border: 1.5px dashed rgba(37, 31, 26, 0.28);
-  border-radius: var(--radius-sm);
+.project-media {
+  height: 200px;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(34, 31, 27, 0.05),
+    rgba(34, 31, 27, 0.05) 10px,
+    transparent 10px,
+    transparent 20px
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  color: var(--ink-soft);
+  gap: 6px;
   text-align: center;
   padding: 20px;
 }
 
-.ref-img .mono {
+.project-media .mono {
   color: var(--ochre);
-  letter-spacing: 0.04em;
 }
 
-.ref-img .placeholder-note {
-  font-size: 0.82rem;
+.project-media .placeholder-note {
+  font-size: 0.8rem;
   color: var(--ink-soft);
-  max-width: 22ch;
+  max-width: 24ch;
 }
 
-.ref-body {
-  padding: 16px 4px 0;
+.project-body {
+  padding: 18px 20px 22px;
+  border-top: 1px solid var(--line);
 }
 
-.ref-body h3 {
-  font-size: 1rem;
+.project-index {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ochre);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.project-body h3 {
+  font-size: 1.02rem;
   font-weight: 500;
   margin-bottom: 4px;
-  font-family: var(--font-mono);
-  letter-spacing: -0.01em;
 }
 
-.ref-body p {
+.project-body p {
   font-size: 0.86rem;
   color: var(--ink-soft);
 }
 
-.ref-note {
-  margin-top: 36px;
-  padding: 18px 22px;
+.project-note {
+  margin-top: 32px;
+  padding: 16px 20px;
   border-left: 3px solid var(--ochre);
   background: rgba(140, 58, 43, 0.05);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: var(--ink-soft);
-  max-width: 60ch;
+  max-width: 62ch;
 }
 
-.ref-note strong {
+.project-note strong {
   color: var(--ink);
-}
-
-/* -----------------------------------------------------------------------
-   Editoriale Ziffer
-
-   Die Nummer stand vorher in der Überschrift ("01 — Altstadt"). Als eigenes
-   Element kann sie den Grad bekommen, den sie im Entwurf trägt, ohne die
-   Überschrift mitzuziehen — und sie bleibt aus der Vorlesereihenfolge
-   heraus, weil sie dort nichts erklärt.
-   ----------------------------------------------------------------------- */
-.ref-body {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 14px;
-  align-items: baseline;
-}
-
-.ref-index {
-  font-family: var(--font-display);
-  font-size: 1.9rem;
-  font-weight: 400;
-  line-height: 1;
-  color: var(--ochre);
-  font-variant-numeric: lining-nums tabular-nums;
-}
-
-.ref-body h3 {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  letter-spacing: 0;
-}
-
-.ref-body p {
-  grid-column: 2;
-  margin-top: 2px;
 }

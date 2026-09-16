@@ -1,37 +1,50 @@
 /* -----------------------------------------------------------------------
-   Kontakt
+   Kontakt: zweifarbiges Panel statt zweispaltiger Creme-Fläche
    ----------------------------------------------------------------------- */
 .contact {
   background: var(--paper);
-  border-top: 1px solid var(--line);
 }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 64px;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 @media (max-width: 860px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 44px;
+  }
+}
+
+.contact-info {
+  background: var(--shutter-green);
+  color: var(--paper);
+  padding: 52px 44px;
+}
+
+@media (max-width: 600px) {
+  .contact-info {
+    padding: 36px 24px;
   }
 }
 
 .contact-info .mono {
-  color: var(--ochre);
+  color: var(--gold);
   display: block;
   margin-bottom: 14px;
 }
 
 .contact-info h2 {
+  color: var(--paper);
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
 .contact-info > p {
-  color: var(--ink-soft);
+  color: rgba(250, 246, 238, 0.75);
   margin-bottom: 28px;
   max-width: 42ch;
 }
@@ -44,34 +57,37 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  padding-block: 16px;
-  border-bottom: 1px solid var(--line);
-  font-size: 0.94rem;
+  padding-block: 15px;
+  border-bottom: 1px solid rgba(250, 246, 238, 0.16);
+  font-size: 0.92rem;
   align-items: baseline;
 }
 
 .info-row dt {
-  color: var(--ink-soft);
+  color: rgba(250, 246, 238, 0.55);
 }
 
 .info-row dd {
   font-weight: 600;
   text-align: right;
+  color: var(--paper);
+}
+
+.info-row dd a {
+  color: inherit;
 }
 
 /* -----------------------------------------------------------------------
    Formular
    ----------------------------------------------------------------------- */
 .contact-form {
-  background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: 34px;
+  background: var(--paper);
+  padding: 52px 44px;
 }
 
 @media (max-width: 600px) {
   .contact-form {
-    padding: 24px;
+    padding: 36px 24px;
   }
 }
 
@@ -91,7 +107,7 @@
 .field textarea {
   width: 100%;
   border: 1px solid var(--line);
-  background: var(--paper);
+  background: var(--cream);
   border-radius: 3px;
   padding: 12px 14px;
   font-family: var(--font-sans);
@@ -108,7 +124,7 @@
 @media (hover: hover) and (pointer: fine) {
   .field input:hover,
   .field textarea:hover {
-    border-color: rgba(37, 31, 26, 0.3);
+    border-color: rgba(34, 31, 27, 0.3);
   }
 }
 
@@ -137,12 +153,9 @@
 .field input.is-invalid,
 .field textarea.is-invalid {
   border-color: var(--ochre);
-  background: rgba(140, 58, 43, 0.04);
+  background: rgba(140, 58, 43, 0.05);
 }
 
-/* Der Status trägt zwei Tonlagen: Hinweis (ruhig) und Fehler (deutlich).
-   Die Farbe ist nicht die einzige Unterscheidung — der Text sagt jeweils
-   klar, was zu tun ist. */
 .form-status[data-tone='notice'] {
   color: var(--ink-soft);
 }

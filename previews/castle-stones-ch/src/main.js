@@ -13,13 +13,11 @@ import './style.css';
 import { initHero } from './animations/hero.js';
 import { initReveal } from './animations/reveal.js';
 import { initHeader } from './animations/header.js';
-import { initTimeline } from './animations/timeline.js';
 import { initForm } from './animations/form.js';
 
 try {
   initHero();
   initReveal();
-  initTimeline();
   initHeader();
   initForm();
 } catch (error) {
