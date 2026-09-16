@@ -1,0 +1,81 @@
+/* -----------------------------------------------------------------------
+   Bewegungs-Zustände
+
+   Die Startzustände stehen nur dann im CSS, wenn JavaScript wirklich läuft
+   (`.js` wird im <head> gesetzt und bei einem Fehler wieder entfernt).
+   Ohne JavaScript ist alles sofort sichtbar, nichts bleibt auf opacity: 0
+   hängen.
+
+   [data-animate]  = einmalige Einblendung beim Laden
+   [data-reveal]   = Einblendung, wenn der Abschnitt in den Blick scrollt
+   ----------------------------------------------------------------------- */
+.js [data-animate],
+.js [data-reveal] {
+  opacity: 0;
+}
+
+/* Der Strich vor der Dachzeile zieht sich beim Laden auf. Als Pseudo-
+   Element ist er für JavaScript nicht erreichbar — deshalb eine reine
+   CSS-Transition, die hero.js über eine Klasse auslöst. */
+.js .eyebrow::before {
+  transform: scaleX(0);
+  transition: transform 520ms var(--ease-out) 140ms;
+}
+
+.js .eyebrow.is-drawn::before {
+  transform: scaleX(1);
+}
+
+/* -----------------------------------------------------------------------
+   Weniger Bewegung
+
+   Reduzierte Bewegung heißt nicht "keine Animation", sondern keine
+   Positionswechsel. Alles steht sofort an seinem Platz, die Übergänge für
+   Farbe und Deckkraft bleiben erhalten, weil sie beim Verstehen helfen.
+   ----------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-animate],
+  .js [data-reveal] {
+    opacity: 1;
+  }
+
+  .js .eyebrow::before {
+    transform: scaleX(1);
+    transition: none;
+  }
+
+  /* Bewegungsanteile aus den Hover-Zuständen nehmen, Farbwechsel behalten. */
+  .button--primary:hover,
+  .button--ghost:hover,
+  .nav-cta:hover {
+    transform: none;
+  }
+
+  /* Die Schieflage der Referenzkarten ist Gestaltung, keine Bewegung:
+     sie bleibt erhalten, nur das Anheben beim Hover entfällt. */
+  .ref-card:hover {
+    transform: rotate(var(--tilt));
+  }
+
+  .service-row:hover .service-chip {
+    transform: none;
+  }
+
+  .button:active,
+  .nav-cta:active {
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

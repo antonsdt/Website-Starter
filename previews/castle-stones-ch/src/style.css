@@ -1,0 +1,20 @@
+/* -----------------------------------------------------------------------
+   Castle Stones — Preview
+
+   Einstiegspunkt für alle Styles. Die Partials liegen in src/styles/ und
+   sind nach Abschnitten der Seite geschnitten. Die Reihenfolge zählt:
+   erst die Tokens, dann die Grundlagen, dann die Bausteine, zuletzt die
+   Bewegung, damit die Reduced-Motion-Regeln zuverlässig gewinnen.
+   ----------------------------------------------------------------------- */
+@import './styles/tokens.css';
+@import './styles/base.css';
+@import './styles/buttons.css';
+@import './styles/header.css';
+@import './styles/hero.css';
+@import './styles/trust.css';
+@import './styles/history.css';
+@import './styles/services.css';
+@import './styles/references.css';
+@import './styles/contact.css';
+@import './styles/footer.css';
+@import './styles/motion.css';

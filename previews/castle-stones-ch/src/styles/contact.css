@@ -1,0 +1,153 @@
+/* -----------------------------------------------------------------------
+   Kontakt
+   ----------------------------------------------------------------------- */
+.contact {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 64px;
+}
+
+@media (max-width: 860px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+}
+
+.contact-info .mono {
+  color: var(--ochre);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.contact-info > p {
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+  max-width: 42ch;
+}
+
+.info-list {
+  list-style: none;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.94rem;
+  align-items: baseline;
+}
+
+.info-row dt {
+  color: var(--ink-soft);
+}
+
+.info-row dd {
+  font-weight: 600;
+  text-align: right;
+}
+
+/* -----------------------------------------------------------------------
+   Formular
+   ----------------------------------------------------------------------- */
+.contact-form {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 34px;
+}
+
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 24px;
+  }
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 3px;
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 160ms ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .field input:hover,
+  .field textarea:hover {
+    border-color: rgba(37, 31, 26, 0.3);
+  }
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 1px;
+}
+
+.contact-form .button {
+  width: 100%;
+  text-align: center;
+}
+
+.form-status {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ochre);
+  min-height: 1.4em;
+}
+
+/* -----------------------------------------------------------------------
+   Formular: Fehler- und Statuszustände
+   ----------------------------------------------------------------------- */
+.field input.is-invalid,
+.field textarea.is-invalid {
+  border-color: var(--ochre);
+  background: rgba(140, 58, 43, 0.04);
+}
+
+/* Der Status trägt zwei Tonlagen: Hinweis (ruhig) und Fehler (deutlich).
+   Die Farbe ist nicht die einzige Unterscheidung — der Text sagt jeweils
+   klar, was zu tun ist. */
+.form-status[data-tone='notice'] {
+  color: var(--ink-soft);
+}
+
+.form-status[data-tone='error'] {
+  color: var(--ochre);
+  font-weight: 600;
+}

@@ -1,0 +1,84 @@
+/* -----------------------------------------------------------------------
+   Leistungen als Farbmuster-Zeilen
+   ----------------------------------------------------------------------- */
+.service-rows {
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 84px 1fr 1.4fr;
+  gap: 28px;
+  align-items: center;
+  padding: 28px 4px;
+  border-bottom: 1px solid var(--line);
+  transition: background-color 200ms ease;
+  /* Wird beim Scrollen gestaffelt eingeblendet; siehe animations/reveal.js */
+  will-change: transform, opacity;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-row:hover {
+    background: rgba(140, 58, 43, 0.04);
+  }
+
+  .service-row:hover .service-chip {
+    transform: scale(1.06) rotate(-2deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .service-row {
+    grid-template-columns: 56px 1fr;
+    row-gap: 8px;
+  }
+
+  .service-row p {
+    grid-column: 1 / -1;
+  }
+}
+
+.service-chip {
+  width: 56px;
+  height: 56px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  transition: transform 250ms var(--ease-out);
+}
+
+.service-row h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.service-row p {
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  max-width: 48ch;
+}
+
+.service-row--featured {
+  background: rgba(140, 58, 43, 0.06);
+  margin-inline: -4px;
+  padding-left: 28px;
+  padding-right: 24px;
+  border-radius: 3px;
+}
+
+.service-row--featured h3 {
+  color: var(--ochre);
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ochre);
+  background: rgba(140, 58, 43, 0.1);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  margin-top: 8px;
+}

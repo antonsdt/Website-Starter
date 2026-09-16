@@ -1,0 +1,51 @@
+/* -----------------------------------------------------------------------
+   Design tokens — Castle Stones (Küsnacht)
+   Variablennamen bleiben identisch zur kopierten Basis (base/hero/header/…
+   referenzieren sie); nur die Werte wechseln auf die Castle-Stones-Welt:
+   warme Steintöne, orientiert an der realen Produktpalette
+   ("sandweiss bis dunkelgrau").
+   ----------------------------------------------------------------------- */
+:root {
+  /* Grundfarben */
+  --cream: #f2ece1;
+  --paper: #faf7f1;
+  --ochre: #8a6a3f;
+  --ochre-dark: #6c5230;
+  --shutter-green: #2b2925;
+  --ink: #221f1b;
+  --ink-soft: #5a5148;
+  --line: rgba(34, 31, 27, 0.14);
+  --gold: #bb9256;
+
+  /* Farbfächer: vier reale Castle-Stones-Töne, sandweiss bis dunkelgrau */
+  --swatch-1: #e9dfcb;
+  --swatch-2: #c9ac81;
+  --swatch-3: #8d7a63;
+  --swatch-4: #4a453d;
+
+  /* Schrift */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Work Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Layout */
+  --container-width: 1120px;
+  --container-pad: 32px;
+  --space-section: 96px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  --shadow-card: 0 24px 50px rgba(34, 31, 27, 0.1);
+  --shadow-ref: 0 14px 30px rgba(34, 31, 27, 0.08);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  color-scheme: light;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --container-pad: 20px;
+  }
+}

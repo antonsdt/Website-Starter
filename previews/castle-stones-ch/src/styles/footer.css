@@ -1,0 +1,63 @@
+/* -----------------------------------------------------------------------
+   Fußzeile
+   ----------------------------------------------------------------------- */
+.site-footer {
+  background: var(--ink);
+  color: rgba(250, 246, 238, 0.7);
+  padding-block: 48px 32px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.site-footer .brand {
+  color: var(--paper);
+}
+
+.site-footer .brand span {
+  color: var(--gold);
+}
+
+.site-footer .mono {
+  color: rgba(250, 246, 238, 0.5);
+}
+
+/* -----------------------------------------------------------------------
+   Rechtliche Zeile: Copyright + Platzhalter-Links
+   ----------------------------------------------------------------------- */
+.footer-legal {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(250, 246, 238, 0.14);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.footer-legal a {
+  color: rgba(250, 246, 238, 0.7);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(250, 246, 238, 0.3);
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+  color: var(--paper);
+  border-color: var(--paper);
+}
