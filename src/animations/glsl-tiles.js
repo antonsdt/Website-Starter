@@ -8,6 +8,7 @@
    Eigenständige Demo-Variante — noch nicht in eine echte Seite
    eingebunden, siehe generative-tiles-demo.html.
    ----------------------------------------------------------------------- */
+import * as THREE from 'three';
 import { createShaderFlight } from './shader-flight.js';
 
 const VERTEX_SHADER = `
@@ -65,6 +66,13 @@ const FRAGMENT_SHADER = `
   varying vec3 vPosition;
   varying vec2 vGroundUV;
 
+  /* Zwei Töne genügen — Fugenfarbe wird daraus abgeleitet, damit jede
+     Castle-Stones-Kollektionsfarbe (siehe initGLSLTiles) ohne weitere
+     Anpassung ein stimmiges Fugenbild ergibt. */
+  uniform vec3 uColorLight;
+  uniform vec3 uColorDark;
+  uniform float uCameraZ;
+
   float hash21(vec2 p) {
     p = fract(p * vec2(123.34, 456.21));
     p += dot(p, p + 45.32);
@@ -105,39 +113,75 @@ const FRAGMENT_SHADER = `
     float edgeDist = min(min(px, tileW - px), min(py, tileH - py));
     vec2 tileId = vec2(colF, rowF);
 
-    /* Warme Steintöne, pro Platte leicht verschoben, plus feine Maserung. */
+    /* Steinton pro Platte leicht verschoben, plus feine Maserung. */
     float toneSeed = hash21(tileId);
-    vec3 stoneLight = vec3(0.78, 0.71, 0.58);
-    vec3 stoneDark = vec3(0.42, 0.36, 0.28);
-    vec3 tileColor = mix(stoneDark, stoneLight, toneSeed);
+    vec3 tileColor = mix(uColorDark, uColorLight, toneSeed);
 
     float mottle = noise2(p * 0.6 + tileId) * 0.5 + noise2(p * 2.2 + tileId) * 0.18;
-    tileColor *= 0.82 + mottle * 0.4;
+    tileColor *= 0.86 + mottle * 0.32;
 
-    float grout = smoothstep(0.0, 0.55, edgeDist);
-    vec3 groutColor = vec3(0.05, 0.04, 0.035);
-    vec3 color = mix(groutColor, tileColor, grout);
+    /* Helle Mörtelfuge wie auf den Referenzfotos (nicht dunkel!), mit einem
+       hauchdünnen Schattensaum direkt an der Naht für die Tiefe der Rille. */
+    vec3 groutColor = clamp(mix(uColorDark, uColorLight, 0.92) * 1.1, 0.0, 1.0);
+    vec3 groutShadow = groutColor * 0.55;
+    float seamAo = smoothstep(0.0, 0.16, edgeDist);
+    vec3 groutFinal = mix(groutShadow, groutColor, seamAo);
+
+    float grout = smoothstep(0.0, 0.65, edgeDist);
+    vec3 color = mix(groutFinal, tileColor, grout);
 
     /* Wanderndes Streiflicht — Echo der tiefstehenden Sonne aus den
        Referenzfotos, kein echtes Lichtmodell. */
     float sweep = sin(vGroundUV.x * 0.05 + vGroundUV.y * 0.11);
-    color += pow(max(sweep, 0.0), 6.0) * 0.35;
+    color += pow(max(sweep, 0.0), 6.0) * 0.25;
 
-    float dist = length(vPosition.xz);
-    float fade = clamp((150.0 - dist) / 150.0, 0.0, 1.0);
+    /* Abstand vor der Kamera, nicht vom Weltursprung — sonst wirkt der
+       Boden direkt vor der Kamera fälschlich abgedunkelt/transparent,
+       weil er zufällig weit vom Ursprung entfernt liegt. */
+    float dist = max(uCameraZ - vPosition.z, 0.0);
+    float fade = clamp((165.0 - dist) / 165.0, 0.0, 1.0);
 
-    gl_FragColor = vec4(color, fade * 0.92);
+    gl_FragColor = vec4(color, fade * 0.95);
   }
 `;
+
+/* Die acht Castle-Stones-Kollektionsfarben (Muster-Referenz von der
+   Original-Website), je als hell/dunkel-Paar für uColorLight/uColorDark.
+   Werte per Augenmaß aus den Musterfotos abgeleitet — vor Produktivnutzung
+   gegen das Originalmuster prüfen (siehe deren eigener Hinweis dazu). */
+export const TILE_PALETTES = {
+  warmDesert: { light: '#e4ded2', dark: '#b7ac99' },
+  eveningShadow: { light: '#cfc7ba', dark: '#9a9186' },
+  morningMist: { light: '#dcdad4', dark: '#b3b0a8' },
+  naturalBeige: { light: '#d8d2c4', dark: '#aea690' },
+  coralBeach: { light: '#e9e5da', dark: '#c2bcac' },
+  brownGrey: { light: '#c7bfb2', dark: '#8f8577' },
+  oldGrey: { light: '#65635f', dark: '#393734' },
+  terraStoneAntique: { light: '#b9705a', dark: '#7b3c2c' },
+};
 
 /**
  * Baut die Tiles-Szene in `canvas` auf (siehe shader-flight.js). Kamera
  * sitzt tiefer und flacher als bei den Hills — ein Gleiten knapp über dem
  * Boden statt ein Flug über Hügel.
+ *
+ * `palette` wählt eine der Castle-Stones-Kollektionsfarben (Standard: das
+ * warme Mittelgrau "Evening Shadow", tonal am nächsten am echten Hero-Foto
+ * — für einen möglichst nahtlosen späteren Übergang dorthin).
+ *
  * @returns {() => void} destroy
  */
-export function initGLSLTiles(canvas, { cameraZ = 70, planeSize = 260, speed = 6 } = {}) {
-  const uniforms = { time: { value: 0 } };
+export function initGLSLTiles(
+  canvas,
+  { cameraZ = 70, planeSize = 260, speed = 6, palette = 'eveningShadow' } = {},
+) {
+  const { light, dark } = TILE_PALETTES[palette] ?? TILE_PALETTES.eveningShadow;
+  const uniforms = {
+    time: { value: 0 },
+    uColorLight: { value: new THREE.Color(light) },
+    uColorDark: { value: new THREE.Color(dark) },
+    uCameraZ: { value: cameraZ },
+  };
   return createShaderFlight(canvas, {
     uniforms,
     vertexShader: VERTEX_SHADER,
