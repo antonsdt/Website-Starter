@@ -56,6 +56,7 @@ const FRAGMENT_SHADER = `
 
   uniform sampler2D uPhoto;
   uniform float uCameraZ;
+  uniform float uTileSize;
 
   float hash21(vec2 p) {
     p = fract(p * vec2(123.34, 456.21));
@@ -66,8 +67,8 @@ const FRAGMENT_SHADER = `
   void main(void) {
     /* Gerades Raster — nur die Fliesengröße variiert minimal pro Reihe,
        keine großflächige Verzerrung, die wie ein wogender Stoff aussieht. */
-    float tileW = 9.5;
-    float tileH = 9.5;
+    float tileW = uTileSize;
+    float tileH = uTileSize;
 
     float rowF = floor(vGroundUV.y / tileH);
     float rowOffset = (hash21(vec2(rowF, 3.1)) - 0.5) * tileW * 0.4;
@@ -125,7 +126,10 @@ const textureLoader = new THREE.TextureLoader();
  *   Shader gezeichnet wird.
  * @returns {() => void} destroy
  */
-export function initPhotoTiles(canvas, { textureUrl, cameraZ = 70, planeSize = 260, speed = 6 } = {}) {
+export function initPhotoTiles(
+  canvas,
+  { textureUrl, cameraZ = 70, planeSize = 260, speed = 6, tileSize = 24 } = {},
+) {
   const texture = textureLoader.load(textureUrl);
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
@@ -135,6 +139,7 @@ export function initPhotoTiles(canvas, { textureUrl, cameraZ = 70, planeSize = 2
     time: { value: 0 },
     uPhoto: { value: texture },
     uCameraZ: { value: cameraZ },
+    uTileSize: { value: tileSize },
   };
 
   return createShaderFlight(canvas, {
@@ -142,8 +147,13 @@ export function initPhotoTiles(canvas, { textureUrl, cameraZ = 70, planeSize = 2
     vertexShader: VERTEX_SHADER,
     fragmentShader: FRAGMENT_SHADER,
     planeSize,
+    /* Flacherer Blickwinkel als bei den anderen Varianten: weniger
+       "Drohne senkrecht über einem Muster", mehr "man steht im Raum und
+       blickt über den Boden" — nur wenige, große Platten im Bild statt
+       eines dicht repetierenden Rasters. */
     cameraPosition: [0, 15, cameraZ],
-    lookAt: [0, -5, 0],
+    lookAt: [0, 5, 0],
+    fov: 40,
     onFrame: (delta) => {
       uniforms.time.value += delta * speed;
     },
