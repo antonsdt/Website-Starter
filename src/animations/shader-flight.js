@@ -23,7 +23,19 @@ export function createShaderFlight(
     uniforms,
     vertexShader,
     fragmentShader,
+    /* Für Varianten, die keinen eigenen Shader brauchen (z. B. eine echte
+       Fototextur auf Standardmaterial) — ersetzt uniforms/vertexShader/
+       fragmentShader komplett, wenn gesetzt. */
+    material: providedMaterial,
+    /* Nur nötig, wenn die Ebene nicht per Shader in die Bodenlage gedreht
+       wird (das tun Hills/Tiles/Cobblestone selbst im Vertex-Shader) —
+       für ein Standardmaterial z. B. [-Math.PI / 2, 0, 0]. */
+    meshRotation = [0, 0, 0],
+    /* THREE.Fog-Instanz für den Horizont-Fade eines Standardmaterials
+       (die Custom-Shader rechnen ihren eigenen Distanz-Fade selbst). */
+    fog,
     planeSize = 256,
+    segments = planeSize,
     cameraPosition = [0, 16, 125],
     lookAt = [0, 28, 0],
     fov = 45,
@@ -35,12 +47,13 @@ export function createShaderFlight(
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
   const scene = new THREE.Scene();
+  if (fog) scene.fog = fog;
   const camera = new THREE.PerspectiveCamera(fov, 1, 1, 10000);
   const clock = new THREE.Clock();
-  const mesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(planeSize, planeSize, planeSize, planeSize),
-    new THREE.RawShaderMaterial({ uniforms, vertexShader, fragmentShader, transparent: true }),
-  );
+  const material =
+    providedMaterial ?? new THREE.RawShaderMaterial({ uniforms, vertexShader, fragmentShader, transparent: true });
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(planeSize, planeSize, segments, segments), material);
+  mesh.rotation.set(...meshRotation);
   scene.add(mesh);
 
   camera.position.set(...cameraPosition);

@@ -1,0 +1,23 @@
+/* -----------------------------------------------------------------------
+   Eigenständiger Einstiegspunkt für die GLSL-Photo-Tiles-Demo — siehe
+   generative-hero-demo.css für die Begründung des fehlenden
+   style.css-Imports.
+   ----------------------------------------------------------------------- */
+@import './styles/flight-hero.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #050505;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}

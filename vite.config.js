@@ -12,6 +12,7 @@ export default defineConfig({
         generativeHeroDemo: resolve(__dirname, 'generative-hero-demo.html'),
         generativeTilesDemo: resolve(__dirname, 'generative-tiles-demo.html'),
         generativeCobblestoneDemo: resolve(__dirname, 'generative-cobblestone-demo.html'),
+        generativeTilesPhotoDemo: resolve(__dirname, 'generative-tiles-photo-demo.html'),
       },
     },
   },
