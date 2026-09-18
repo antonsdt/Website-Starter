@@ -120,7 +120,7 @@ const textureLoader = new THREE.TextureLoader();
  * Baut die Photo-Tiles-Szene in `canvas` auf (siehe shader-flight.js).
  *
  * @param {string} options.textureUrl - Pfad zu einem fugenfreien
- *   Materialausschnitt (z. B. src/assets/castle-stones/sample-6-material.png)
+ *   Materialausschnitt (z. B. src/assets/castle-stones/floor-material-macro.png)
  *   — ein reines Stein-Patch ohne eigene Fugenlinien, da die Fuge hier im
  *   Shader gezeichnet wird.
  * @returns {() => void} destroy
