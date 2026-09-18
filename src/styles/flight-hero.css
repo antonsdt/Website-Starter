@@ -1,27 +1,28 @@
 /* -----------------------------------------------------------------------
-   GLSL-Hills-Hero
+   Flight-Hero
 
-   In sich geschlossener Namensraum (eigene Variablen, kein Zugriff auf
-   tokens.css) — die Komponente soll unverändert in ein anderes Projekt
-   (z. B. Castle Stones) übernommen werden können.
+   Layout für die "Flug über eine generative Ebene"-Demos (Hills, Tiles,
+   …) — in sich geschlossener Namensraum (eigene Variablen, kein Zugriff
+   auf tokens.css), damit die Komponente unverändert in ein anderes
+   Projekt (z. B. Castle Stones) übernommen werden kann.
    ----------------------------------------------------------------------- */
-.glsl-hills-hero {
-  --ghh-bg: #050505;
-  --ghh-ink: #f5f4f2;
-  --ghh-ink-soft: rgba(245, 244, 242, 0.55);
-  --ghh-ease: cubic-bezier(0.23, 1, 0.32, 1);
+.flight-hero {
+  --fh-bg: #050505;
+  --fh-ink: #f5f4f2;
+  --fh-ink-soft: rgba(245, 244, 242, 0.55);
+  --fh-ease: cubic-bezier(0.23, 1, 0.32, 1);
 
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-  background: var(--ghh-bg);
-  color: var(--ghh-ink);
+  background: var(--fh-bg);
+  color: var(--fh-ink);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.glsl-hills-hero canvas {
+.flight-hero canvas {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -30,8 +31,8 @@
 }
 
 /* Weicher Verlauf hinter dem Text, damit die Zeilen auch dann lesbar
-   bleiben, wenn das Terrain gerade hell durchscheint. */
-.glsl-hills-hero::before {
+   bleiben, wenn der Boden gerade hell durchscheint. */
+.flight-hero::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -39,7 +40,7 @@
   pointer-events: none;
 }
 
-.glsl-hills-copy {
+.flight-hero-copy {
   position: relative;
   z-index: 1;
   text-align: center;
@@ -47,7 +48,10 @@
   pointer-events: none;
 }
 
-.glsl-hills-eyebrow {
+/* Der Textblock sitzt über einem bewegten, unterschiedlich hellen Boden —
+   ein weicher Schatten hält ihn lesbar, ohne einen harten Kasten zu
+   brauchen. */
+.flight-hero-eyebrow {
   display: block;
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
@@ -55,36 +59,39 @@
   font-size: clamp(1.5rem, 4vw, 2.75rem);
   line-height: 1.15;
   margin-bottom: 4px;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.65);
 }
 
-.glsl-hills-title {
+.flight-hero-title {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-weight: 600;
   font-size: clamp(2.25rem, 6.5vw, 4.5rem);
   line-height: 1.05;
   letter-spacing: -0.01em;
   margin: 0;
+  text-shadow: 0 6px 32px rgba(0, 0, 0, 0.65);
 }
 
-.glsl-hills-sub {
+.flight-hero-sub {
   margin: 20px auto 0;
   max-width: 46ch;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-size: clamp(0.85rem, 1.4vw, 1rem);
   line-height: 1.6;
-  color: var(--ghh-ink-soft);
+  color: var(--fh-ink-soft);
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.7);
 }
 
 /* -----------------------------------------------------------------------
-   Eintritt — einmalig, danach steht der Text fest. Nur die
-   Terrain-Ebene dahinter bewegt sich weiter.
+   Eintritt — einmalig, danach steht der Text fest. Nur die Ebene
+   dahinter bewegt sich weiter.
    ----------------------------------------------------------------------- */
-.js .glsl-hills-hero [data-animate] {
+.js .flight-hero [data-animate] {
   opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .glsl-hills-hero [data-animate] {
+  .js .flight-hero [data-animate] {
     opacity: 1;
   }
 }

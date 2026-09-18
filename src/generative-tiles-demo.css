@@ -1,8 +1,7 @@
 /* -----------------------------------------------------------------------
-   Eigenständiger Einstiegspunkt für die GLSL-Hills-Demo — bewusst ohne
-   Import von style.css/tokens.css, damit die Komponente unabhängig vom
-   Scheither-Farbschema bleibt und sich 1:1 in ein anderes Projekt
-   (z. B. Castle Stones) übertragen lässt.
+   Eigenständiger Einstiegspunkt für die GLSL-Tiles-Demo — siehe
+   generative-hero-demo.css für die Begründung des fehlenden
+   style.css-Imports.
    ----------------------------------------------------------------------- */
 @import './styles/flight-hero.css';
 

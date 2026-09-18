@@ -1,19 +1,14 @@
 /* -----------------------------------------------------------------------
    GLSL Hills — generatives Terrain, das über eine Noise-Verschiebung der
-   Zeit "weiterfließt". Kamera und Text stehen fest, nur die
-   Vertex-Positionen der Ebene wandern über die Zeit-Uniform — das erzeugt
-   den Flug-durch-den-Raum-Effekt, ohne dass tatsächlich neue Geometrie
-   entsteht.
+   Zeit "weiterfließt". Lifecycle (Kamera, Resize, Reduced-Motion) kommt
+   aus shader-flight.js, hier steht nur noch das Shader-Paar.
 
    Portiert aus einer React/Three.js-Referenzkomponente (GLSLHills) auf
    dieses Vanilla-JS-Setup. Shader-Code (inkl. des 3D-Perlin-Noise
    `cnoise`, nach Ashima Arts/Stefan Gustavson, MIT-lizenziert) unverändert
-   übernommen — nur das Drumherum (Lifecycle, Resize, Reduced-Motion) ist
-   auf dieses Projekt zugeschnitten.
+   übernommen.
    ----------------------------------------------------------------------- */
-import * as THREE from 'three';
-import { animate, stagger } from 'animejs';
-import { easeOut, prefersReducedMotion } from './env.js';
+import { createShaderFlight } from './shader-flight.js';
 
 const VERTEX_SHADER = `
   attribute vec3 position;
@@ -134,105 +129,21 @@ const FRAGMENT_SHADER = `
   }
 `;
 
-class HillsPlane {
-  constructor(planeSize) {
-    this.uniforms = { time: { value: 0 } };
-    this.mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry(planeSize, planeSize, planeSize, planeSize),
-      new THREE.RawShaderMaterial({
-        uniforms: this.uniforms,
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: FRAGMENT_SHADER,
-        transparent: true,
-      }),
-    );
-  }
-
-  update(delta, speed) {
-    this.uniforms.time.value += delta * speed;
-  }
-
-  dispose() {
-    this.mesh.geometry.dispose();
-    this.mesh.material.dispose();
-  }
-}
-
 /**
- * Baut die Hills-Szene in `canvas` auf. Die Größe folgt dem Elternelement
- * von `canvas`, nicht dem Viewport — damit die Komponente auch als
- * Abschnitt statt als Vollbild-Hero funktioniert.
- *
- * @returns {() => void} destroy — Loop stoppen, Beobachter und
- *   GPU-Ressourcen freigeben. Vor jedem erneuten `initGLSLHills` auf
- *   demselben Canvas aufrufen.
+ * Baut die Hills-Szene in `canvas` auf (siehe shader-flight.js).
+ * @returns {() => void} destroy
  */
 export function initGLSLHills(canvas, { cameraZ = 125, planeSize = 256, speed = 0.5 } = {}) {
-  const container = canvas.parentElement;
-  const reduceMotion = prefersReducedMotion();
-
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, 1, 1, 10000);
-  const clock = new THREE.Clock();
-  const plane = new HillsPlane(planeSize);
-  scene.add(plane.mesh);
-
-  camera.position.set(0, 16, cameraZ);
-  camera.lookAt(new THREE.Vector3(0, 28, 0));
-
-  const resize = () => {
-    const { clientWidth: width, clientHeight: height } = container;
-    if (!width || !height) return;
-    renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-  };
-
-  let frameId = null;
-  const tick = () => {
-    plane.update(clock.getDelta(), speed);
-    renderer.render(scene, camera);
-    frameId = requestAnimationFrame(tick);
-  };
-
-  const resizeObserver = new ResizeObserver(resize);
-  resizeObserver.observe(container);
-  resize();
-
-  /* Weniger Bewegung: ein Bild reicht — die Noise-Verschiebung selbst ist
-     Gestaltung (das Terrain), nur ihr Fortschritt über die Zeit ist die
-     Bewegung, die wegfällt. */
-  if (reduceMotion) {
-    renderer.render(scene, camera);
-  } else {
-    tick();
-  }
-
-  return function destroy() {
-    if (frameId !== null) cancelAnimationFrame(frameId);
-    resizeObserver.disconnect();
-    plane.dispose();
-    renderer.dispose();
-  };
-}
-
-/**
- * Einmaliger, gestaffelter Eintritt für den Text über dem Terrain. Läuft
- * unabhängig von `initGLSLHills` — die Ebene fließt weiter, der Text steht
- * danach fest.
- */
-export function animateHillsCopy(root) {
-  const copy = root.querySelectorAll('[data-animate]');
-  if (!copy.length) return;
-
-  if (prefersReducedMotion()) return;
-
-  animate(copy, {
-    opacity: [0, 1],
-    translateY: [16, 0],
-    duration: 640,
-    delay: stagger(110, { start: 200 }),
-    ease: easeOut,
+  const uniforms = { time: { value: 0 } };
+  return createShaderFlight(canvas, {
+    uniforms,
+    vertexShader: VERTEX_SHADER,
+    fragmentShader: FRAGMENT_SHADER,
+    planeSize,
+    cameraPosition: [0, 16, cameraZ],
+    lookAt: [0, 28, 0],
+    onFrame: (delta) => {
+      uniforms.time.value += delta * speed;
+    },
   });
 }
