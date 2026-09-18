@@ -11,6 +11,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         generativeHeroDemo: resolve(__dirname, 'generative-hero-demo.html'),
         generativeTilesDemo: resolve(__dirname, 'generative-tiles-demo.html'),
+        generativeCobblestoneDemo: resolve(__dirname, 'generative-cobblestone-demo.html'),
       },
     },
   },
