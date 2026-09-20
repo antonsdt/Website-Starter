@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------
-   Vertrauensleiste
+   Prinzipien-Leiste
    ----------------------------------------------------------------------- */
 .trust {
-  border-block: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   padding-block: 22px;
 }
 
@@ -24,10 +24,8 @@
   font-weight: 500;
 }
 
-.trust-item .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ochre);
+.trust-item .spark {
+  width: 10px;
+  height: 10px;
   flex: 0 0 auto;
 }

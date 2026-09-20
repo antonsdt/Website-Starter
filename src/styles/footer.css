@@ -2,9 +2,60 @@
    Fußzeile
    ----------------------------------------------------------------------- */
 .site-footer {
-  background: var(--ink);
-  color: rgba(250, 246, 238, 0.7);
-  padding-block: 48px 32px;
+  background: var(--bg-elevated);
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  padding-block: 56px 32px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding-bottom: 40px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.footer-tagline {
+  max-width: 30ch;
+  color: var(--ink-faint);
+  margin-top: 10px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.footer-links-group h4 {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+
+.footer-links-group ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links-group a {
+  text-decoration: none;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  transition: color 160ms ease;
+}
+
+.footer-links-group a:hover {
+  color: var(--glow);
 }
 
 .footer-inner {
@@ -16,13 +67,9 @@
 }
 
 .site-footer .brand {
-  color: var(--paper);
-}
-
-.site-footer .brand span {
-  color: var(--gold);
+  color: var(--ink);
 }
 
 .site-footer .mono {
-  color: rgba(250, 246, 238, 0.5);
+  color: var(--ink-faint);
 }

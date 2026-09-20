@@ -14,16 +14,27 @@
   opacity: 0;
 }
 
-/* Der Strich vor der Dachzeile zieht sich beim Laden auf. Als Pseudo-
-   Element ist er für JavaScript nicht erreichbar — deshalb eine reine
-   CSS-Transition, die hero.js über eine Klasse auslöst. */
-.js .eyebrow::before {
-  transform: scaleX(0);
-  transition: transform 520ms var(--ease-out) 140ms;
+/* -----------------------------------------------------------------------
+   Sparkle-Puls
+
+   Der Hero-Mark atmet leise — keine Drehung, kein Herumspringen, nur ein
+   sehr flacher Helligkeitswechsel, der die Szene lebendig hält, ohne vom
+   Wort SENKO abzulenken.
+   ----------------------------------------------------------------------- */
+.js .spark--hero {
+  animation: sparkPulse 4.8s ease-in-out infinite;
 }
 
-.js .eyebrow.is-drawn::before {
-  transform: scaleX(1);
+@keyframes sparkPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 18px var(--glow-soft)) drop-shadow(0 0 46px var(--glow-dim));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 26px var(--glow-soft)) drop-shadow(0 0 64px var(--glow-dim));
+    transform: scale(1.05);
+  }
 }
 
 /* -----------------------------------------------------------------------
@@ -43,25 +54,30 @@
     opacity: 1;
   }
 
-  .js .eyebrow::before {
-    transform: scaleX(1);
-    transition: none;
+  .js .spark--hero {
+    animation: none;
   }
 
-  /* Bewegungsanteile aus den Hover-Zuständen nehmen, Farbwechsel behalten. */
+  .js .marquee-track {
+    animation: none;
+  }
+
+  .js .hero-scroll-line::after {
+    animation: none;
+    display: none;
+  }
+
   .button--primary:hover,
   .button--ghost:hover,
   .nav-cta:hover {
     transform: none;
   }
 
-  /* Die Schieflage der Referenzkarten ist Gestaltung, keine Bewegung:
-     sie bleibt erhalten, nur das Anheben beim Hover entfällt. */
-  .ref-card:hover {
-    transform: rotate(var(--tilt));
+  .work-card:hover {
+    transform: none;
   }
 
-  .service-row:hover .service-chip {
+  .service-row:hover .service-index {
     transform: none;
   }
 

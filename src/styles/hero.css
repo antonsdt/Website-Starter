@@ -1,181 +1,286 @@
 /* -----------------------------------------------------------------------
-   Hero mit Farbfächer-Timeline
+   Hero
+
+   Eine kinematische Bühne statt eines Fotos: Canvas-Sternenfeld, ein
+   weicher Glutschein hinter dem Sparkle-Mark, ein Bergkamm als SVG-
+   Silhouette und eine Umlaufbahn-Linie, die sich über die Szene zieht.
+   Alles prozedural erzeugt — keine Stockfotografie, keine Lizenzfragen,
+   und die Datei bleibt federleicht.
    ----------------------------------------------------------------------- */
 .hero {
-  padding-block: 104px 48px;
   position: relative;
   overflow: hidden;
+  background: var(--bg);
+  isolation: isolate;
 }
 
-/* Die Überschrift steht über die volle Breite, alles Weitere hängt darunter
-   in den Ecken — statt Text links, Karte rechts. Das gibt der Zeile den
-   Raum, den sie bei dieser Größe braucht. */
-.hero-inner {
+.hero-sky {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   display: block;
+  z-index: 0;
 }
 
-.hero-foot {
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Weicher, warmer Schein hinter der Marke — der einzige Farbmoment der
+   ganzen Szene. */
+.hero-glow {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  width: min(900px, 140vw);
+  height: min(900px, 140vw);
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--glow-dim) 0%, rgba(242, 201, 138, 0.04) 42%, transparent 70%);
+  filter: blur(4px);
+}
+
+.hero-orbit {
+  position: absolute;
+  top: -6%;
+  left: 50%;
+  width: min(1400px, 220vw);
+  transform: translateX(-50%);
+  overflow: visible;
+}
+
+.hero-orbit path {
+  fill: none;
+  stroke: rgba(244, 242, 236, 0.16);
+  stroke-width: 1;
+}
+
+.hero-axis {
+  position: absolute;
+  top: 12%;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--line-strong) 18%, var(--line) 70%, transparent);
+}
+
+.hero-peaks {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 22vh;
+  min-height: 140px;
+}
+
+.hero-peaks .peak-far {
+  fill: #1b2030;
+}
+
+.hero-peaks .peak-near {
+  fill: #0a0b10;
+}
+
+.hero-horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 17vh;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--glow-soft) 35%,
+    var(--glow) 50%,
+    var(--glow-soft) 65%,
+    transparent
+  );
+  opacity: 0.5;
+}
+
+/* -----------------------------------------------------------------------
+   Inhalt
+   ----------------------------------------------------------------------- */
+.hero-frame {
+  position: relative;
+  z-index: 2;
+  min-height: calc(100svh - var(--header-h));
   display: grid;
-  grid-template-columns: 1fr minmax(300px, 400px);
-  gap: 56px;
-  align-items: start;
-  margin-top: 44px;
+  grid-template-rows: auto 1fr auto;
+  padding-block: 108px 48px;
 }
 
-@media (max-width: 900px) {
-  .hero-foot {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    margin-top: 36px;
-  }
-}
-
-/* Die weite Sperrung sitzt hier, nicht in der Überschrift: kleine
-   Versalien vertragen sie, ein 5rem-Display nicht. */
-.eyebrow {
-  color: var(--ochre);
-  font-weight: 600;
-  margin-bottom: 22px;
+.hero-corners {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  letter-spacing: 0.18em;
+  justify-content: space-between;
+  gap: 24px;
 }
 
-.eyebrow::before {
-  content: '';
+.corner-list {
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+
+.hero-corner--tr .corner-list,
+.hero-corner--br .corner-list {
+  text-align: right;
+}
+
+.corner-rule {
+  display: block;
   width: 22px;
-  height: 2px;
-  background: var(--ochre);
-  display: inline-block;
-  /* Der Strich zieht sich beim Laden auf; siehe animations/hero.js */
-  transform-origin: left;
+  height: 1px;
+  background: var(--line-strong);
+  margin-top: 8px;
 }
 
-/* Bei dieser Größe wird der Zeilenabstand zum Problem, nicht der Schriftgrad:
-   knapp unter 1 gesetzt, damit die zwei Zeilen als ein Block lesen. Die
-   Laufweite geht ins Minus — großer Grad braucht enger, nicht weiter. */
-.hero-title {
-  font-size: clamp(2.6rem, 7.4vw, 5.25rem);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  margin-bottom: 0;
-  text-wrap: balance;
+.hero-corner--tr .corner-rule,
+.hero-corner--br .corner-rule {
+  margin-left: auto;
 }
 
-.hero-title em {
-  font-style: italic;
-  color: var(--ochre);
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 18px;
+  padding-inline: 16px;
 }
 
-.hero-sub {
-  font-size: 1.08rem;
-  color: var(--ink-soft);
+.hero-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.mark-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.mark-dots span {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+.spark--hero {
+  width: 46px;
+  height: 46px;
+  color: var(--ink);
+  filter: drop-shadow(0 0 18px var(--glow-soft)) drop-shadow(0 0 46px var(--glow-dim));
+}
+
+.hero-wordmark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3.2rem, 12vw, 7.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-shadow: 0 0 60px rgba(244, 242, 236, 0.12);
+}
+
+.hero-tagline {
+  color: var(--ink-faint);
+  letter-spacing: 0.32em;
+}
+
+.hero-lede {
   max-width: 46ch;
-  margin-bottom: 28px;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--ink-soft);
+  margin-top: 6px;
 }
 
 .hero-actions {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
 }
 
-/* -----------------------------------------------------------------------
-   Farbfächer-Karte
-   ----------------------------------------------------------------------- */
-.swatch-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  box-shadow: var(--shadow-card);
-}
-
-.swatch-card > .mono {
-  color: var(--ink-soft);
-  margin-bottom: 16px;
-  display: block;
-}
-
-.swatch-strip {
+.hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  border-radius: 3px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  list-style: none;
-}
-
-.swatch {
-  display: grid;
-  grid-template-columns: 64px 1fr auto;
   align-items: center;
-  gap: 16px;
-  padding: 13px 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  gap: 8px;
+  color: var(--ink-faint);
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(to bottom, var(--ink-faint), transparent);
   position: relative;
-  /* Die Karten werden in hero.js einzeln eingeblendet. */
-  will-change: transform, opacity;
+  overflow: hidden;
 }
 
-.swatch:last-child {
-  border-bottom: none;
+.js .hero-scroll-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glow);
+  transform: translateY(-100%);
+  animation: scrollDrip 2.4s var(--ease-in-out) infinite;
 }
 
-.swatch-color {
-  width: 44px;
-  height: 44px;
-  border-radius: 3px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+@keyframes scrollDrip {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
 }
 
-/* Dieselbe Ziffernsprache wie bei den Referenzen. */
-.swatch-year {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1;
-  opacity: 0.75;
-  font-variant-numeric: lining-nums tabular-nums;
+@media (max-width: 760px) {
+  .hero-frame {
+    padding-block: 108px 32px;
+  }
+
+  .hero-corners {
+    font-size: 0.9em;
+  }
+
+  .corner-list {
+    font-size: 0.6rem;
+    line-height: 1.7;
+  }
+
+  .hero-wordmark {
+    font-size: clamp(2.8rem, 18vw, 4rem);
+  }
+
+  .hero-lede {
+    max-width: 32ch;
+  }
 }
 
-/* Beide sind Inline-Elemente und flossen deshalb in eine Zeile — bei der
-   schmaleren Karte brach die Rolle mitten im Namen um. */
-.swatch-name {
-  display: block;
-  font-weight: 600;
-  font-size: 0.92rem;
-  line-height: 1.3;
-}
-
-.swatch-role {
-  display: block;
-  font-size: 0.78rem;
-  opacity: 0.85;
-  line-height: 1.3;
-}
-
-.swatch--1 {
-  background: var(--swatch-1);
-  color: #3a2f22;
-}
-
-.swatch--2 {
-  background: var(--swatch-2);
-  color: #3a2f22;
-}
-
-.swatch--3 {
-  background: var(--swatch-3);
-  color: #fbf3e6;
-}
-
-.swatch--4 {
-  background: var(--swatch-4);
-  color: #fbf3e6;
-}
-
-.swatch--4 .swatch-color {
-  background: #fff;
+@media (max-width: 560px) {
+  .hero-corner--bl .corner-list,
+  .hero-corner--br .corner-list {
+    display: none;
+  }
 }

@@ -19,7 +19,7 @@ html {
 
 body {
   min-height: 100svh;
-  background: var(--cream);
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 16px;
@@ -31,7 +31,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
@@ -63,6 +63,7 @@ a {
 
 .section {
   padding-block: var(--space-section);
+  position: relative;
 }
 
 .visually-hidden {
@@ -75,10 +76,27 @@ a {
 }
 
 /* -----------------------------------------------------------------------
+   Sparkle-Mark
+
+   Der Markenkern: ein vierstrahliger Stern, gebaut als SVG-Symbol und per
+   <use> überall dort eingesetzt, wo die Marke als Zeichen statt als Wort
+   auftritt (Kopfleiste, Hero, Aufzählungen, Fußzeile). currentColor macht
+   ihn überall einfärbbar.
+   ----------------------------------------------------------------------- */
+.spark {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  fill: currentColor;
+  flex: 0 0 auto;
+}
+
+/* -----------------------------------------------------------------------
    Fokus & Skip-Link
    ----------------------------------------------------------------------- */
 :focus-visible {
-  outline: 2px solid var(--ochre);
+  outline: 2px solid var(--glow);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -89,8 +107,8 @@ a {
   left: 1rem;
   z-index: 100;
   padding: 0.6rem 1rem;
-  background: var(--ochre);
-  color: var(--paper);
+  background: var(--glow);
+  color: var(--bg);
   font-weight: 600;
   border-radius: var(--radius-sm);
   text-decoration: none;
@@ -111,13 +129,14 @@ a {
 }
 
 .section-head .mono {
-  color: var(--ochre);
+  color: var(--glow);
   margin-bottom: 14px;
   display: block;
+  letter-spacing: 0.18em;
 }
 
 .section-head h2 {
-  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
   line-height: 1.15;
 }
 
@@ -127,20 +146,33 @@ a {
   font-size: 1.02rem;
 }
 
+.section-head--split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  max-width: none;
+}
+
+@media (max-width: 760px) {
+  .section-head--split {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
 /* -----------------------------------------------------------------------
    Ankersprünge unter der klebenden Kopfleiste
-
-   Ohne diesen Abstand landet die Überschrift eines angesprungenen
-   Abschnitts hinter der Leiste. Der Wert entspricht ihrer Höhe plus etwas
-   Luft.
    ----------------------------------------------------------------------- */
 :target,
 .section,
 #top,
 #kontakt,
 #leistungen,
-#referenzen,
-#geschichte {
+#arbeiten,
+#prozess,
+#studio {
   scroll-margin-top: 96px;
 }
 
@@ -150,20 +182,9 @@ a {
   #top,
   #kontakt,
   #leistungen,
-  #referenzen,
-  #geschichte {
+  #arbeiten,
+  #prozess,
+  #studio {
     scroll-margin-top: 80px;
   }
-}
-
-/* -----------------------------------------------------------------------
-   Auszeichnungszeilen
-
-   Die weite Sperrung ist die editoriale Handschrift der Seite — sie sitzt
-   ausschließlich auf kurzen Versalzeilen. Laufende Texte und große Grade
-   bleiben unberührt.
-   ----------------------------------------------------------------------- */
-.section-head .mono,
-.swatch-card > .mono {
-  letter-spacing: 0.18em;
 }

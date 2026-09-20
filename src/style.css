@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------
-   Malereibetrieb Scheither
+   SENKO — Digital Design & Development
 
    Einstiegspunkt für alle Styles. Die Partials liegen in src/styles/ und
    sind nach Abschnitten der Seite geschnitten. Die Reihenfolge zählt:
@@ -11,10 +11,12 @@
 @import './styles/buttons.css';
 @import './styles/header.css';
 @import './styles/hero.css';
+@import './styles/marquee.css';
 @import './styles/trust.css';
-@import './styles/history.css';
 @import './styles/services.css';
-@import './styles/references.css';
+@import './styles/process.css';
+@import './styles/work.css';
+@import './styles/studio.css';
 @import './styles/contact.css';
 @import './styles/footer.css';
 @import './styles/motion.css';

@@ -12,7 +12,7 @@
 import { animate } from 'animejs';
 import { easeOut, prefersReducedMotion } from './env.js';
 
-const PHONE = '0451 86 58 74';
+const EMAIL = 'hello@senko.studio';
 
 export function initForm() {
   const form = document.querySelector('.contact-form');
@@ -61,7 +61,7 @@ function submitRequest(status) {
      dem Kunden. */
   setStatus(
     status,
-    `Der Online-Versand ist noch nicht freigeschaltet. Rufen Sie uns gern direkt an: ${PHONE}`,
+    `Der Online-Versand ist noch nicht freigeschaltet. Schreiben Sie uns gern direkt: ${EMAIL}`,
     'notice',
   );
 }

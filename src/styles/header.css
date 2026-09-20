@@ -1,9 +1,6 @@
 /* -----------------------------------------------------------------------
    Kopfleiste
    ----------------------------------------------------------------------- */
-/* Die Leiste selbst ist unsichtbar — die Fläche trägt die Navigationspille
-   darin. So läuft der Inhalt sichtbar darunter durch, statt an einer Kante
-   abgeschnitten zu werden. */
 .site-header {
   position: sticky;
   top: 0;
@@ -20,33 +17,40 @@
   height: 56px;
 }
 
-/* Die Marke braucht dieselbe Fläche wie die Navigationspille: Seit die
-   Leiste durchsichtig ist, liefe sie sonst ohne Untergrund über die
-   Karten darunter. */
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.05rem;
+  letter-spacing: 0.02em;
   text-decoration: none;
+  color: var(--ink);
   padding: 9px 18px;
   border-radius: 999px;
-  background: rgba(250, 246, 238, 0.72);
+  background: rgba(12, 13, 17, 0.6);
   border: 1px solid var(--line);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 2px 14px rgba(37, 31, 26, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   white-space: nowrap;
   transition:
     box-shadow 240ms var(--ease-out),
-    background-color 240ms ease;
+    background-color 240ms ease,
+    border-color 240ms ease;
+}
+
+.brand .spark {
+  width: 13px;
+  height: 13px;
 }
 
 .site-header.is-scrolled .brand {
-  background: rgba(250, 246, 238, 0.88);
-  box-shadow: 0 6px 24px rgba(37, 31, 26, 0.1);
+  background: rgba(12, 13, 17, 0.82);
+  border-color: var(--line-strong);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* In der Fußzeile ist die Marke wieder blanker Text. */
 .site-footer .brand {
   padding: 0;
   border: none;
@@ -56,11 +60,6 @@
   box-shadow: none;
 }
 
-.brand span {
-  color: var(--ochre);
-}
-
-/* Schwebende Pille: eigene Fläche, eigener Rand, milchig über dem Inhalt. */
 .nav {
   display: flex;
   gap: 26px;
@@ -68,16 +67,19 @@
   align-items: center;
   padding: 7px 8px 7px 22px;
   border-radius: 999px;
-  background: rgba(250, 246, 238, 0.72);
+  background: rgba(12, 13, 17, 0.6);
   border: 1px solid var(--line);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 2px 14px rgba(37, 31, 26, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    box-shadow 240ms var(--ease-out),
+    background-color 240ms ease,
+    border-color 240ms ease;
 }
 
 .nav a {
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 500;
   color: var(--ink-soft);
   position: relative;
@@ -85,7 +87,6 @@
   transition: color 160ms ease;
 }
 
-/* Unterstrich wächst aus der linken Kante, statt einfach zu erscheinen. */
 .nav a:not(.nav-cta)::after {
   content: '';
   position: absolute;
@@ -100,7 +101,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .nav a:not(.nav-cta):hover {
-    color: var(--ochre);
+    color: var(--glow);
   }
 
   .nav a:not(.nav-cta):hover::after {
@@ -113,12 +114,12 @@
 }
 
 .nav-cta {
-  background: var(--ochre);
-  color: var(--paper) !important;
+  background: var(--ink);
+  color: var(--bg) !important;
   padding: 10px 20px;
   border-radius: 999px;
   font-weight: 600 !important;
-  font-size: 0.85rem !important;
+  font-size: 0.82rem !important;
   transition:
     background-color 160ms ease,
     transform 160ms var(--ease-out);
@@ -126,7 +127,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .nav-cta:hover {
-    background: var(--ochre-dark);
+    background: var(--glow);
     transform: translateY(-1px);
   }
 }
@@ -151,45 +152,20 @@
   }
 }
 
-/* -----------------------------------------------------------------------
-   Zustand: gescrollt
-
-   Sobald die Leiste nicht mehr am Seitenanfang steht, setzt sie sich vom
-   Inhalt ab. Nur Schatten und Deckkraft — die Höhe bleibt gleich, damit
-   der Inhalt darunter nicht springt.
-   ----------------------------------------------------------------------- */
-.nav {
-  transition:
-    box-shadow 240ms var(--ease-out),
-    background-color 240ms ease;
-}
-
 .site-header.is-scrolled .nav {
-  background: rgba(250, 246, 238, 0.88);
-  box-shadow: 0 6px 24px rgba(37, 31, 26, 0.1);
+  background: rgba(12, 13, 17, 0.82);
+  border-color: var(--line-strong);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* -----------------------------------------------------------------------
-   Zustand: aktiver Abschnitt
-
-   Der Unterstrich nutzt dieselbe Mechanik wie beim Hover, damit beide
-   Zustände sich nicht widersprechen.
-   ----------------------------------------------------------------------- */
 .nav a:not(.nav-cta).is-active {
-  color: var(--ochre);
+  color: var(--glow);
 }
 
 .nav a:not(.nav-cta).is-active::after {
   transform: scaleX(1);
 }
 
-/* -----------------------------------------------------------------------
-   Schmale Fenster
-
-   Bei 375px brachen Marke und Schaltfläche jeweils auf zwei Zeilen um und
-   sprengten die feste Höhe der Leiste — die Überschrift verschwand
-   darunter. Beide bleiben jetzt einzeilig und werden eine Spur kleiner.
-   ----------------------------------------------------------------------- */
 @media (max-width: 480px) {
   .header-inner {
     height: 64px;
@@ -203,11 +179,10 @@
 
   .nav-cta {
     padding: 9px 15px;
-    font-size: 0.78rem !important;
+    font-size: 0.76rem !important;
     white-space: nowrap;
   }
 
-  /* Ohne Menüpunkte bliebe nur überflüssige Polsterung um die CTA. */
   .nav {
     padding: 5px;
     gap: 0;
