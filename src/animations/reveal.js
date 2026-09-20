@@ -18,8 +18,11 @@ const GROUP_SELECTOR = [
   '.trust-list',
   '[data-timeline]',
   '[data-services]',
-  '[data-references]',
+  '[data-work]',
+  '.studio-locations',
+  '.studio-stats',
   '.info-list',
+  '.footer-links',
 ].join(', ');
 
 export function initReveal() {
@@ -54,11 +57,11 @@ export function initReveal() {
   /* -------------------------------------------------------------------
      Nachlauf für übersprungene Abschnitte
 
-     Bei einem Ankersprung (etwa "Beratung anfragen") wandert ein Abschnitt
-     direkt von unterhalb des Fensters nach oberhalb. Der Observer meldet
-     das nicht: `isIntersecting` war vorher falsch und ist es danach immer
-     noch, also entsteht gar kein Eintrag. Ohne diesen Nachlauf bliebe der
-     übersprungene Abschnitt für immer leer.
+     Bei einem Ankersprung wandert ein Abschnitt direkt von unterhalb des
+     Fensters nach oberhalb. Der Observer meldet das nicht: `isIntersecting`
+     war vorher falsch und ist es danach immer noch, also entsteht gar
+     kein Eintrag. Ohne diesen Nachlauf bliebe der übersprungene Abschnitt
+     für immer leer.
 
      Der Listener läuft nur, solange überhaupt etwas aussteht, und hängt
      sich danach selbst wieder aus.

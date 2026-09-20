@@ -1,10 +1,10 @@
 /* -----------------------------------------------------------------------
-   Firmengeschichte: die Linie wächst mit
+   Prozess: die Linie wächst mit
 
    Die Zeitleiste hat in CSS bereits eine ruhende Linie. Darüber legt sich
-   eine goldene, die an den Scrollfortschritt gekoppelt ist: 160 Jahre, die
-   sich beim Lesen aufbauen. Erklärende Bewegung, kein Effekt — deshalb
-   scrollgebunden statt einmalig abgespielt.
+   eine glühende, die an den Scrollfortschritt gekoppelt ist — der Weg vom
+   ersten Gespräch bis zum Wachstum baut sich beim Lesen auf. Erklärende
+   Bewegung, kein Effekt — deshalb scrollgebunden statt einmalig abgespielt.
 
    Bewusst kein Tween, sondern ein direkt gesetzter Wert: Die Position
    gehört dem Scrollrad, nicht einer Zeitachse.
@@ -12,7 +12,7 @@
 import { utils } from 'animejs';
 import { prefersReducedMotion } from './env.js';
 
-export function initTimeline() {
+export function initProcess() {
   const list = document.querySelector('[data-timeline]');
   if (!list) return;
 

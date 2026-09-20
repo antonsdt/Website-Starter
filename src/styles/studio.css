@@ -1,0 +1,109 @@
+/* -----------------------------------------------------------------------
+   Studio / Über uns
+   ----------------------------------------------------------------------- */
+.studio {
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.studio-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 64px;
+}
+
+@media (max-width: 860px) {
+  .studio-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+}
+
+.studio-lede {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 32ch;
+}
+
+.studio-lede em {
+  font-style: italic;
+  color: var(--glow);
+}
+
+.studio-copy {
+  margin-top: 24px;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  font-size: 1rem;
+}
+
+.studio-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  background: var(--bg);
+}
+
+.studio-panel > .mono {
+  color: var(--glow);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.studio-locations {
+  list-style: none;
+}
+
+.studio-locations li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-block: 13px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.98rem;
+}
+
+.studio-locations li:last-child {
+  border-bottom: none;
+}
+
+.studio-locations .loc-tag {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+}
+
+.studio-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.studio-stat b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--ink);
+  line-height: 1;
+}
+
+.studio-stat span {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 480px) {
+  .studio-stats {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}

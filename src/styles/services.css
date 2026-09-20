@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------
-   Leistungen als Farbmuster-Zeilen
+   Leistungen als Zeilen
    ----------------------------------------------------------------------- */
 .service-rows {
   border-top: 1px solid var(--line);
@@ -11,20 +11,20 @@
   grid-template-columns: 84px 1fr 1.4fr;
   gap: 28px;
   align-items: center;
-  padding: 28px 4px;
+  padding: 32px 4px;
   border-bottom: 1px solid var(--line);
   transition: background-color 200ms ease;
-  /* Wird beim Scrollen gestaffelt eingeblendet; siehe animations/reveal.js */
   will-change: transform, opacity;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .service-row:hover {
-    background: rgba(140, 58, 43, 0.04);
+    background: rgba(244, 242, 236, 0.03);
   }
 
-  .service-row:hover .service-chip {
-    transform: scale(1.06) rotate(-2deg);
+  .service-row:hover .service-index {
+    color: var(--glow);
+    transform: translateX(4px);
   }
 }
 
@@ -39,16 +39,18 @@
   }
 }
 
-.service-chip {
-  width: 56px;
-  height: 56px;
-  border-radius: 3px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
-  transition: transform 250ms var(--ease-out);
+.service-index {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--ink-faint);
+  font-variant-numeric: lining-nums tabular-nums;
+  transition:
+    color 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
 }
 
 .service-row h3 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 500;
 }
 
@@ -59,25 +61,29 @@
 }
 
 .service-row--featured {
-  background: rgba(140, 58, 43, 0.06);
+  background: var(--glow-dim);
   margin-inline: -4px;
   padding-left: 28px;
   padding-right: 24px;
   border-radius: 3px;
 }
 
+.service-row--featured .service-index {
+  color: var(--glow);
+}
+
 .service-row--featured h3 {
-  color: var(--ochre);
+  color: var(--glow);
 }
 
 .tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ochre);
-  background: rgba(140, 58, 43, 0.1);
+  letter-spacing: 0.06em;
+  color: var(--glow);
+  background: var(--glow-dim);
   padding: 3px 8px;
   border-radius: var(--radius-sm);
   margin-top: 8px;

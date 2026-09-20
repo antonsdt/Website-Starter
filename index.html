@@ -4,34 +4,34 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content="#F2EDE2" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#060608" />
     <meta
       name="description"
-      content="Malereibetrieb Scheither in Lübeck: Malerarbeiten, Altbausanierung und Denkmalpflege seit 1864. Vier Generationen Farbe, eine Handschrift."
+      content="SENKO ist ein Studio für digitales Design und Entwicklung aus Lübeck. Wir gestalten und bauen einzigartige Websites — von der Idee bis zum Launch."
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Malereibetrieb Scheither" />
-    <meta property="og:title" content="Malereibetrieb Scheither — Malermeister in Lübeck seit 1864" />
+    <meta property="og:site_name" content="SENKO" />
+    <meta property="og:title" content="SENKO — Digital Design & Development" />
     <meta
       property="og:description"
-      content="Malerarbeiten, Altbausanierung und Denkmalpflege in Lübeck. Vier Generationen Farbe, eine Handschrift."
+      content="Ein Studio für digitales Design und Entwicklung. Wir gestalten und bauen einzigartige Websites — von der Idee bis zum Launch."
     />
     <meta property="og:locale" content="de_DE" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Malereibetrieb Scheither — Malermeister in Lübeck seit 1864" />
+    <meta name="twitter:title" content="SENKO — Digital Design & Development" />
     <meta
       name="twitter:description"
-      content="Malerarbeiten, Altbausanierung und Denkmalpflege in Lübeck. Vier Generationen Farbe, eine Handschrift."
+      content="Ein Studio für digitales Design und Entwicklung aus Lübeck. Einzigartige Websites, von der Idee bis zum Launch."
     />
 
-    <title>Malereibetrieb Scheither — Malermeister in Lübeck seit 1864</title>
+    <title>SENKO — Digital Design & Development</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -42,163 +42,193 @@
   <body>
     <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
+    <!-- Sparkle-Symbol einmal definiert, überall per <use> eingesetzt. -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="spark" viewBox="0 0 32 32">
+        <path
+          d="M16 1C16.9 8.4 17.6 12.4 31 16C17.6 19.6 16.9 23.6 16 31C15.1 23.6 14.4 19.6 1 16C14.4 12.4 15.1 8.4 16 1Z"
+        />
+      </symbol>
+    </svg>
+
     <!-- =====================================================================
          Kopfleiste
          ================================================================== -->
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#top">Malerei <span>Scheither</span></a>
+        <a class="brand" href="#top"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg>SENKO</a>
         <nav aria-label="Hauptnavigation">
           <ul class="nav">
-            <li><a href="#geschichte">Geschichte</a></li>
+            <li><a href="#arbeiten">Arbeiten</a></li>
             <li><a href="#leistungen">Leistungen</a></li>
-            <li><a href="#referenzen">Referenzen</a></li>
-            <li class="nav-keep"><a href="#kontakt" class="nav-cta">Beratung anfragen</a></li>
+            <li><a href="#prozess">Prozess</a></li>
+            <li><a href="#studio">Studio</a></li>
+            <li class="nav-keep"><a href="#kontakt" class="nav-cta">Projekt anfragen</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <span id="top"></span>
-
       <!-- ===================================================================
-           Hero mit Farbfächer-Timeline
+           Hero
            ================================================================ -->
-      <section class="hero">
-        <div class="container hero-inner">
-          <p class="eyebrow mono" data-animate>Seit 1864 in Lübeck-Schlutup</p>
-          <h1 class="hero-title" data-animate>
-            Vier Generationen Farbe.<br /><em>Eine Handschrift.</em>
-          </h1>
+      <section class="hero" id="top">
+        <canvas class="hero-sky" data-starfield aria-hidden="true"></canvas>
 
-          <div class="hero-foot">
-            <div class="hero-lede">
-              <p class="hero-sub" data-animate>
-                Der Malereibetrieb Scheither steht seit 160 Jahren für Malerarbeiten,
-                Altbausanierung und Denkmalpflege in Lübeck und Umgebung — geführt mit dem
-                gleichen Qualitätsanspruch wie am ersten Tag.
-              </p>
-              <div class="hero-actions" data-animate>
-                <a href="#kontakt" class="button button--primary">Kostenlose Beratung</a>
-                <a href="#geschichte" class="button button--ghost">Unsere Geschichte</a>
-              </div>
+        <div class="hero-atmosphere" aria-hidden="true">
+          <div class="hero-glow"></div>
+
+          <svg class="hero-orbit" viewBox="0 0 1400 460" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M40,340 C260,60 1140,60 1360,340" />
+            <path d="M120,380 C340,140 1060,140 1280,380" opacity="0.5" />
+          </svg>
+
+          <span class="hero-axis"></span>
+          <span class="hero-horizon"></span>
+
+          <svg class="hero-peaks" viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <path
+              class="peak-far"
+              d="M0,400 L0,220 L120,160 L230,200 L350,120 L480,190 L620,140 L760,210 L900,150 L1040,205 L1180,130 L1320,195 L1440,150 L1440,400 Z"
+            />
+            <path
+              class="peak-near"
+              d="M0,400 L0,280 L100,230 L220,270 L340,200 L470,260 L600,210 L740,270 L880,220 L1020,265 L1160,200 L1300,255 L1440,215 L1440,400 Z"
+            />
+          </svg>
+        </div>
+
+        <div class="hero-frame container">
+          <div class="hero-corners">
+            <div class="hero-corner hero-corner--tl" data-animate>
+              <ul class="corner-list">
+                <li>Ideas</li>
+                <li>Systems</li>
+                <li>Design</li>
+                <li>Impact</li>
+              </ul>
+              <span class="corner-rule"></span>
             </div>
-
-            <div class="swatch-card" data-animate>
-              <span class="mono">Firmenfarbfächer — 4 Generationen</span>
-            <ul class="swatch-strip" data-swatch-strip>
-              <li class="swatch swatch--1">
-                <span class="swatch-color"></span>
-                <span>
-                  <span class="swatch-name">Gerhard H. Scheither</span>
-                  <span class="swatch-role">Gründung, 1864</span>
-                </span>
-                <span class="swatch-year">01</span>
-              </li>
-              <li class="swatch swatch--2">
-                <span class="swatch-color"></span>
-                <span>
-                  <span class="swatch-name">Heinrich Scheither</span>
-                  <span class="swatch-role">2. Generation</span>
-                </span>
-                <span class="swatch-year">02</span>
-              </li>
-              <li class="swatch swatch--3">
-                <span class="swatch-color"></span>
-                <span>
-                  <span class="swatch-name">Rudolf &amp; Gerhard Scheither</span>
-                  <span class="swatch-role">3. Generation</span>
-                </span>
-                <span class="swatch-year">03</span>
-              </li>
-              <li class="swatch swatch--4">
-                <span class="swatch-color"></span>
-                <span>
-                  <span class="swatch-name">Rainer Aichbauer</span>
-                  <span class="swatch-role">Heute, e.K.</span>
-                </span>
-                <span class="swatch-year">04</span>
-              </li>
-            </ul>
+            <div class="hero-corner hero-corner--tr" data-animate>
+              <ul class="corner-list">
+                <li>Beyond</li>
+                <li>The</li>
+                <li>Visible</li>
+              </ul>
+              <span class="corner-rule"></span>
             </div>
           </div>
+
+          <div class="hero-center">
+            <div class="hero-mark" data-animate>
+              <span class="mark-dots" aria-hidden="true"><span></span><span></span></span>
+              <svg class="spark spark--hero" aria-hidden="true"><use href="#spark" /></svg>
+              <span class="mark-dots" aria-hidden="true"><span></span><span></span></span>
+            </div>
+
+            <div class="hero-word" data-animate>
+              <h1 class="hero-wordmark">
+                <span class="visually-hidden">SENKO — Studio für digitales Design und Entwicklung</span>
+                <span aria-hidden="true">SENKO</span>
+              </h1>
+              <p class="mono hero-tagline" aria-hidden="true">Digital Design &amp; Development</p>
+            </div>
+
+            <p class="hero-lede" data-animate>
+              Wir gestalten und entwickeln Websites, die aussehen, denken und sich anfühlen wie kein
+              zweites Studio — aus Lübeck, für die ganze Welt.
+            </p>
+
+            <div class="hero-actions" data-animate>
+              <a href="#kontakt" class="button button--primary">Projekt anfragen</a>
+              <a href="#arbeiten" class="button button--ghost">Arbeiten ansehen</a>
+            </div>
+          </div>
+
+          <div class="hero-corners">
+            <div class="hero-corner hero-corner--bl" data-animate>
+              <span class="corner-rule"></span>
+              <ul class="corner-list">
+                <li>Smaller</li>
+                <li>Farther</li>
+                <li>Stronger</li>
+              </ul>
+            </div>
+            <div class="hero-corner hero-corner--br" data-animate>
+              <span class="corner-rule"></span>
+              <ul class="corner-list">
+                <li>A More</li>
+                <li>Human</li>
+                <li>Future</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-scroll" data-animate aria-hidden="true">
+          <span class="mono">Scroll</span>
+          <span class="hero-scroll-line"></span>
         </div>
       </section>
 
       <!-- ===================================================================
-           Vertrauensleiste
+           Fähigkeiten-Laufband
+           ================================================================ -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <div class="marquee-set">
+            <span class="marquee-item">Web Design</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">Entwicklung</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">Branding</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">Motion</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">Strategie</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">SEO</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+          </div>
+          <div class="marquee-set">
+            <span class="marquee-item">Web Design</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">Entwicklung</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">Branding</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">Motion</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">Strategie</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+            <span class="marquee-item">SEO</span>
+            <span class="marquee-item"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           Prinzipien
            ================================================================ -->
       <div class="trust">
         <div class="container">
           <ul class="trust-list">
             <li class="trust-item" data-reveal>
-              <span class="dot" aria-hidden="true"></span>
-              Ältester Malerbetrieb im Bezirk der Handwerkskammer Lübeck
+              <svg class="spark" aria-hidden="true"><use href="#spark" /></svg>
+              Individuelles Design statt Templates
             </li>
             <li class="trust-item" data-reveal>
-              <span class="dot" aria-hidden="true"></span>
-              Fachbetrieb für Altbausanierung &amp; Denkmalpflege
+              <svg class="spark" aria-hidden="true"><use href="#spark" /></svg>
+              Performance &amp; Zugänglichkeit von Anfang an
             </li>
             <li class="trust-item" data-reveal>
-              <span class="dot" aria-hidden="true"></span>
-              Faire Preise, feste Zusagen
+              <svg class="spark" aria-hidden="true"><use href="#spark" /></svg>
+              Ein Team von der Idee bis zum Launch
             </li>
           </ul>
         </div>
       </div>
-
-      <!-- ===================================================================
-           Geschichte
-           ================================================================ -->
-      <section id="geschichte" class="section history">
-        <div class="container">
-          <div class="history-top">
-            <div class="section-head">
-              <span class="mono" data-reveal>160 Jahre Firmengeschichte</span>
-              <h2 data-reveal>Was 1864 begann, führen wir heute fort</h2>
-              <p data-reveal>
-                Vier Generationen der Familie Scheither haben diesen Betrieb geprägt. Seit
-                einigen Jahren führt Rainer Aichbauer das Unternehmen im Sinne dieser
-                Tradition weiter.
-              </p>
-            </div>
-
-            <!-- Die Jahreszahl trägt den Abschnitt als Bild, nicht als Text:
-                 vorgelesen würde sie die Dachzeile darüber nur wiederholen. -->
-            <p class="history-figure" data-reveal aria-hidden="true">
-              <span class="history-figure-value">160</span>
-              <span class="history-figure-label mono">Jahre</span>
-            </p>
-          </div>
-          <ol class="timeline" data-timeline>
-            <li class="timeline-item" data-reveal>
-              <span class="timeline-year">1864</span>
-              <h3>Gründung durch Gerhard H. Scheither</h3>
-              <p>
-                Als traditioneller Handwerksbetrieb spezialisiert auf Malerarbeiten und
-                Lackierungen für Privatkunden und Gewerbe.
-              </p>
-            </li>
-            <li class="timeline-item" data-reveal>
-              <span class="timeline-year">Folgejahre</span>
-              <h3>Heinrich, Rudolf &amp; Gerhard Scheither</h3>
-              <p>
-                Drei weitere Generationen der Familie führen den Betrieb fort und bauen den Ruf
-                als verlässlicher Fachbetrieb in Lübeck aus.
-              </p>
-            </li>
-            <li class="timeline-item" data-reveal>
-              <span class="timeline-year">Heute</span>
-              <h3>Unter Rainer Aichbauer</h3>
-              <p>
-                Der älteste Malerbetrieb im Bezirk der Handwerkskammer Lübeck – mit demselben
-                Qualitätsanspruch, modernen Techniken und persönlicher Beratung.
-              </p>
-            </li>
-          </ol>
-        </div>
-      </section>
 
       <!-- ===================================================================
            Leistungen
@@ -207,105 +237,213 @@
         <div class="container">
           <div class="section-head">
             <span class="mono" data-reveal>Leistungen</span>
-            <h2 data-reveal>Handwerk für jede Fassade, jeden Raum</h2>
+            <h2 data-reveal>Alles, was eine Website trägt</h2>
             <p data-reveal>
-              Von der klassischen Malerarbeit bis zur sensiblen Sanierung historischer
-              Bausubstanz.
+              Design, Code, Marke und Bewegung entstehen im selben Team — damit am Ende alles
+              zusammenpasst, statt nur nebeneinander zu stehen.
             </p>
           </div>
           <ul class="service-rows" data-services>
             <li class="service-row service-row--featured" data-reveal>
-              <span class="service-chip" style="background: var(--ochre)"></span>
+              <span class="service-index">01</span>
               <div>
-                <h3>Altbausanierung &amp; Denkmalpflege</h3>
-                <span class="tag">Alleinstellungsmerkmal</span>
+                <h3>Web Design</h3>
+                <span class="tag">Kernleistung</span>
               </div>
               <p>
-                Fachgerechte Sanierung historischer Gebäude — mit Gespür für alte Bausubstanz
-                und Material, gewachsen aus 160 Jahren Erfahrung mit Lübecker Altbauten.
+                Individuelles UI/UX-Design mit klarer visueller Sprache — gebaut auf die Marke,
+                nicht auf eine Vorlage.
               </p>
             </li>
             <li class="service-row" data-reveal>
-              <span class="service-chip" style="background: var(--swatch-2)"></span>
-              <div><h3>Malerarbeiten Innen &amp; Außen</h3></div>
-              <p>Anstriche, Tapezierarbeiten und Gestaltung für Wohn- und Gewerberäume.</p>
+              <span class="service-index">02</span>
+              <div><h3>Entwicklung</h3></div>
+              <p>Sauber gebaute, performante Websites mit modernen Frameworks — schnell, sicher, wartbar.</p>
             </li>
             <li class="service-row" data-reveal>
-              <span class="service-chip" style="background: var(--shutter-green)"></span>
-              <div><h3>Fassaden &amp; Wärmedämmung</h3></div>
-              <p>Fassadenanstriche und Vollwärmeschutz für dauerhaften Werterhalt.</p>
+              <span class="service-index">03</span>
+              <div><h3>Branding &amp; Identität</h3></div>
+              <p>Logo, Typografie, Farbwelt und Tonalität — ein visuelles System aus einem Guss.</p>
             </li>
             <li class="service-row" data-reveal>
-              <span class="service-chip" style="background: var(--swatch-3)"></span>
-              <div><h3>Schimmelbeseitigung</h3></div>
-              <p>Nachhaltige Beseitigung und Vorbeugung — sauber und gründlich.</p>
+              <span class="service-index">04</span>
+              <div><h3>Motion &amp; Interaktion</h3></div>
+              <p>Micro-Interactions und Animationen, die sich richtig anfühlen — statt nur aufzufallen.</p>
             </li>
             <li class="service-row" data-reveal>
-              <span class="service-chip" style="background: #8c9b8a"></span>
-              <div><h3>Wasserschadenbeseitigung</h3></div>
-              <p>Schnelle, fachgerechte Instandsetzung nach Wasserschäden.</p>
-            </li>
-            <li class="service-row" data-reveal>
-              <span class="service-chip" style="background: var(--swatch-1)"></span>
-              <div><h3>Tapeten &amp; Spachteltechniken</h3></div>
-              <p>Von klassisch bis kreativ — individuelle Wandgestaltung nach Wunsch.</p>
+              <span class="service-index">05</span>
+              <div><h3>Strategie &amp; SEO</h3></div>
+              <p>Struktur, Content und Sichtbarkeit, die zur Marke und zum Ziel passen.</p>
             </li>
           </ul>
         </div>
       </section>
 
       <!-- ===================================================================
-           Referenzen
+           Prozess
            ================================================================ -->
-      <section id="referenzen" class="section references">
+      <section id="prozess" class="section process">
         <div class="container">
           <div class="section-head">
-            <span class="mono" data-reveal>Referenzen</span>
-            <h2 data-reveal>Projekte aus Lübeck &amp; Umgebung</h2>
+            <span class="mono" data-reveal>Prozess</span>
+            <h2 data-reveal>Sechs Schritte, ein Team</h2>
             <p data-reveal>
-              Sobald die ersten Baustellenfotos vorliegen, ersetzen sie die Platzhalter unten
-              eins zu eins.
+              Kein starrer Ablauf — aber ein klarer roter Faden, an dem sich jedes Projekt entlang
+              bewegt.
             </p>
           </div>
-          <ul class="ref-grid" data-references>
-            <li class="ref-card" data-reveal>
-              <div class="ref-img">
-                <span class="mono">Foto folgt</span>
-                <span class="placeholder-note">Fassadensanierung, Lübeck Altstadt</span>
-              </div>
-              <div class="ref-body">
-                <span class="ref-index" aria-hidden="true">01</span>
-                <h3>Altstadt</h3>
-                <p>Denkmalgerechte Instandsetzung einer Hausfassade.</p>
+          <ol class="timeline" data-timeline>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-index">01</span>
+              <div>
+                <h3>Idee</h3>
+                <p>Gespräch, Ziele und erste Richtung. Wir hören zu, bevor wir gestalten.</p>
               </div>
             </li>
-            <li class="ref-card" data-reveal>
-              <div class="ref-img">
-                <span class="mono">Foto folgt</span>
-                <span class="placeholder-note">Innenanstrich, Einfamilienhaus</span>
-              </div>
-              <div class="ref-body">
-                <span class="ref-index" aria-hidden="true">02</span>
-                <h3>Wohnhaus</h3>
-                <p>Komplette Neugestaltung von Wand- und Deckenflächen.</p>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-index">02</span>
+              <div>
+                <h3>Konzept</h3>
+                <p>Struktur, Content-Architektur und ein erstes visuelles Stimmungsbild.</p>
               </div>
             </li>
-            <li class="ref-card" data-reveal>
-              <div class="ref-img">
-                <span class="mono">Foto folgt</span>
-                <span class="placeholder-note">Schimmelsanierung, Mietwohnung</span>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-index">03</span>
+              <div>
+                <h3>Design</h3>
+                <p>Ein vollständiges visuelles System, ausgearbeitet bis ins Detail.</p>
               </div>
-              <div class="ref-body">
-                <span class="ref-index" aria-hidden="true">03</span>
-                <h3>Mietwohnung</h3>
-                <p>Nachhaltige Beseitigung inkl. Ursachenanalyse.</p>
+            </li>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-index">04</span>
+              <div>
+                <h3>Entwicklung</h3>
+                <p>Sauberer Code, durchdachte Animation, echte Performance.</p>
+              </div>
+            </li>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-index">05</span>
+              <div>
+                <h3>Launch</h3>
+                <p>Qualitätssicherung, Deployment und eine saubere Übergabe.</p>
+              </div>
+            </li>
+            <li class="timeline-item" data-reveal>
+              <span class="timeline-index">06</span>
+              <div>
+                <h3>Wachstum</h3>
+                <p>Iteration, Betreuung und Weiterentwicklung nach dem Start.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           Arbeiten
+           ================================================================ -->
+      <section id="arbeiten" class="section">
+        <div class="container">
+          <div class="section-head section-head--split">
+            <div>
+              <span class="mono" data-reveal>Arbeiten</span>
+              <h2 data-reveal>Was gerade entsteht</h2>
+            </div>
+            <p data-reveal>Eine Auswahl der Projektarten, an denen wir aktuell arbeiten.</p>
+          </div>
+          <ul class="work-grid" data-work>
+            <li
+              class="work-card"
+              data-reveal
+              style="--cover-gradient: linear-gradient(155deg, #0c0e14 0%, #1b2136 55%, #2c2015 100%)"
+            >
+              <div class="work-cover">
+                <span class="work-tag">Case Study in Arbeit</span>
+              </div>
+              <div class="work-body">
+                <span class="work-index">01</span>
+                <h3>E-Commerce Relaunch</h3>
+                <p>Visuelles Neudesign und Performance-Überholung für einen wachsenden Online-Shop.</p>
+              </div>
+            </li>
+            <li
+              class="work-card"
+              data-reveal
+              style="--cover-gradient: linear-gradient(195deg, #0a0c10 0%, #142433 50%, #201a2c 100%)"
+            >
+              <div class="work-cover">
+                <span class="work-tag">Case Study in Arbeit</span>
+              </div>
+              <div class="work-body">
+                <span class="work-index">02</span>
+                <h3>SaaS Produktseite</h3>
+                <p>Eine Landingpage, die komplexe Software in klarer Sprache erklärt.</p>
+              </div>
+            </li>
+            <li
+              class="work-card"
+              data-reveal
+              style="--cover-gradient: linear-gradient(135deg, #0d0e12 0%, #271b14 60%, #0c1a24 100%)"
+            >
+              <div class="work-cover">
+                <span class="work-tag">Case Study in Arbeit</span>
+              </div>
+              <div class="work-body">
+                <span class="work-index">03</span>
+                <h3>Editorial Portfolio</h3>
+                <p>Ein ruhiges, typografisches Zuhause für ein Fotografie-Studio.</p>
               </div>
             </li>
           </ul>
-          <p class="ref-note" data-reveal>
-            <strong>Für dich als nächster Schritt:</strong> 2–3 Handyfotos von aktuellen oder
-            letzten Baustellen reichen für den Start — Vorher/Nachher wirkt am stärksten.
+          <p class="work-note" data-reveal>
+            <strong>SENKO ist ein junges Studio.</strong> Unsere ersten Projekte entstehen gerade —
+            schreiben Sie uns, wir zeigen Ihnen gern aktuelle Arbeiten persönlich.
           </p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           Studio
+           ================================================================ -->
+      <section id="studio" class="section studio">
+        <div class="container studio-grid">
+          <div>
+            <span class="mono" data-reveal>Studio</span>
+            <p class="studio-lede" data-reveal>
+              Ein kleines Studio mit einem klaren Ziel: Websites bauen, <em>die man sich merkt</em> —
+              nicht weil sie laut sind, sondern weil sie stimmen.
+            </p>
+            <p class="studio-copy" data-reveal>
+              SENKO wurde in Lübeck gegründet und arbeitet international. Jedes Projekt beginnt bei
+              null — kein Baukasten, kein wiederverwendetes Layout. Design, Text, Code und Bewegung
+              entstehen im selben Team, damit am Ende wirklich alles zusammenpasst.
+            </p>
+          </div>
+
+          <div class="studio-panel" data-reveal>
+            <span class="mono">Standorte</span>
+            <ul class="studio-locations">
+              <li><span>Lübeck</span><span class="loc-tag">Hauptsitz</span></li>
+              <li><span>Hamburg</span><span class="loc-tag">Vor Ort</span></li>
+              <li><span>Berlin</span><span class="loc-tag">Vor Ort</span></li>
+              <li><span>Tokio</span><span class="loc-tag">Remote</span></li>
+              <li><span>Worldwide</span><span class="loc-tag">Remote</span></li>
+            </ul>
+            <div class="studio-stats">
+              <div class="studio-stat">
+                <b>2025</b>
+                <span>Gegründet</span>
+              </div>
+              <div class="studio-stat">
+                <b>5</b>
+                <span>Leistungsfelder</span>
+              </div>
+              <div class="studio-stat">
+                <b>24h</b>
+                <span>Antwortzeit</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -316,25 +454,26 @@
         <div class="container contact-grid">
           <div class="contact-info">
             <span class="mono" data-reveal>Kontakt</span>
-            <h2 data-reveal>Lassen Sie uns über<br />Ihr Projekt sprechen.</h2>
+            <h2 data-reveal>Lassen Sie uns etwas<br />Einzigartiges bauen.</h2>
             <p data-reveal>
-              Unverbindlich, persönlich und ohne Verkaufsdruck — wie es sich für einen
-              Familienbetrieb gehört.
+              Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb eines Werktages
+              zurück.
             </p>
             <dl class="info-list">
               <div class="info-row" data-reveal>
-                <dt>Adresse</dt>
-                <dd>Schlutuper Kirchstr. 7, 23568 Lübeck</dd>
+                <dt>E-Mail</dt>
+                <dd><a href="mailto:hello@senko.studio">hello@senko.studio</a></dd>
               </div>
               <div class="info-row" data-reveal>
-                <dt>Telefon</dt>
-                <dd><a href="tel:+4945186 5874">0451 86 58 74</a></dd>
+                <dt>Standort</dt>
+                <dd>Lübeck · Deutschland</dd>
               </div>
               <div class="info-row" data-reveal>
-                <dt>Öffnungszeiten</dt>
-                <dd>Mo–Do 7–16 Uhr, Fr 7–14 Uhr</dd>
+                <dt>Verfügbarkeit</dt>
+                <dd>Neue Projekte ab Q1</dd>
               </div>
             </dl>
+            <p class="mono contact-coords" data-reveal aria-hidden="true">53.8655° N · 10.6866° E</p>
           </div>
 
           <form class="contact-form" data-reveal novalidate>
@@ -347,8 +486,8 @@
               <input id="email" name="email" type="email" autocomplete="email" placeholder="ihre@email.de" required />
             </div>
             <div class="field">
-              <label for="msg">Ihr Anliegen</label>
-              <textarea id="msg" name="msg" placeholder="Beschreiben Sie kurz Ihr Projekt …" required></textarea>
+              <label for="msg">Ihr Projekt</label>
+              <textarea id="msg" name="msg" placeholder="Erzählen Sie uns kurz davon …" required></textarea>
             </div>
             <button class="button button--primary" type="submit">Anfrage senden</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
@@ -361,9 +500,35 @@
          Fußzeile
          ================================================================== -->
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <span class="brand">Malerei <span>Scheither</span></span>
-        <span class="mono">Seit 1864 · Lübeck-Schlutup</span>
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <span class="brand"><svg class="spark" aria-hidden="true"><use href="#spark" /></svg>SENKO</span>
+            <p class="footer-tagline mono">Moves beyond the visible.</p>
+          </div>
+          <div class="footer-links">
+            <div class="footer-links-group">
+              <h4>Navigation</h4>
+              <ul>
+                <li><a href="#arbeiten">Arbeiten</a></li>
+                <li><a href="#leistungen">Leistungen</a></li>
+                <li><a href="#prozess">Prozess</a></li>
+                <li><a href="#studio">Studio</a></li>
+              </ul>
+            </div>
+            <div class="footer-links-group">
+              <h4>Kontakt</h4>
+              <ul>
+                <li><a href="mailto:hello@senko.studio">hello@senko.studio</a></li>
+                <li><a href="#kontakt">Projekt anfragen</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-inner">
+          <span class="mono">© 2025 SENKO — Lübeck · Worldwide</span>
+          <span class="mono">Digital Design &amp; Development</span>
+        </div>
       </div>
     </footer>
 

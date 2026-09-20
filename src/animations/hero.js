@@ -1,52 +1,39 @@
 /* -----------------------------------------------------------------------
    Hero-Auftritt
 
-   Ein Zug von oben nach unten: Dachzeile, Überschrift, Fließtext,
-   Schaltflächen — danach fächert sich der Farbfächer auf. Die vier
-   Generationen erscheinen nacheinander, weil genau das die Aussage des
-   Abschnitts ist.
+   Die Bühne baut sich von außen nach innen auf: erst die Eck-Marginalien,
+   dann die Marke, dann die Aussage, zuletzt die Handlungsaufforderung und
+   der Scroll-Hinweis. Ein Zug, keine Einzelteile.
    ----------------------------------------------------------------------- */
-import { createTimeline, stagger, utils } from 'animejs';
+import { createTimeline, stagger } from 'animejs';
 import { easeOut, prefersReducedMotion } from './env.js';
 
 export function initHero() {
-  const copy = document.querySelectorAll('.hero [data-animate]');
-  const swatches = document.querySelectorAll('[data-swatch-strip] .swatch');
-  const eyebrow = document.querySelector('.hero .eyebrow');
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
 
-  if (!copy.length) return;
+  const corners = [...hero.querySelectorAll('.hero-corner[data-animate]')];
+  const mark = hero.querySelector('.hero-mark[data-animate]');
+  const word = hero.querySelector('.hero-word[data-animate]');
+  const lede = hero.querySelector('.hero-lede[data-animate]');
+  const actions = hero.querySelector('.hero-actions[data-animate]');
+  const scrollCue = hero.querySelector('.hero-scroll[data-animate]');
 
-  /* Weniger Bewegung: alles steht sofort an seinem Platz. Der Strich vor
-     der Dachzeile wird trotzdem gesetzt, sonst bliebe er unsichtbar. */
-  if (prefersReducedMotion()) {
-    eyebrow?.classList.add('is-drawn');
-    return;
-  }
+  const targets = [...corners, mark, word, lede, actions, scrollCue].filter(Boolean);
+  if (!targets.length) return;
 
-  /* Startzustand der Fächerkarten. Sie tragen kein [data-animate], also
-     setzt CSS sie nicht auf 0 — das passiert hier, unmittelbar bevor die
-     Zeitleiste läuft. */
-  utils.set(swatches, { opacity: 0, translateX: 18 });
+  /* Weniger Bewegung: alles steht sofort an seinem Platz. */
+  if (prefersReducedMotion()) return;
 
   const timeline = createTimeline({ defaults: { ease: easeOut } });
 
   timeline
-    .add(copy, {
-      opacity: [0, 1],
-      translateY: [14, 0],
-      duration: 560,
-      delay: stagger(80),
-    }, 60)
-    .add(swatches, {
-      opacity: [0, 1],
-      translateX: [18, 0],
-      duration: 520,
-      delay: stagger(65),
-    }, '-=240');
-
-  /* Der Strich zieht sich per CSS-Transition auf — billiger als ein
-     zweiter Tween und für ein Pseudo-Element der einzige Weg. */
-  requestAnimationFrame(() => eyebrow?.classList.add('is-drawn'));
+    .add(corners, { opacity: [0, 1], translateY: [-8, 0], duration: 560, delay: stagger(90) }, 140)
+    .add(mark, { opacity: [0, 1], scale: [0.86, 1], duration: 640 }, 300)
+    .add(word, { opacity: [0, 1], translateY: [16, 0], duration: 620 }, '-=380')
+    .add(lede, { opacity: [0, 1], translateY: [14, 0], duration: 560 }, '-=340')
+    .add(actions, { opacity: [0, 1], translateY: [14, 0], duration: 520 }, '-=360')
+    .add(scrollCue, { opacity: [0, 1], duration: 500 }, '-=180');
 
   return timeline;
 }

@@ -1,0 +1,91 @@
+/* -----------------------------------------------------------------------
+   Prozess mit Zeitleiste
+   ----------------------------------------------------------------------- */
+.process {
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+  border-left: 1px solid var(--line-strong);
+  list-style: none;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 48px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -37px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--glow);
+  box-shadow: 0 0 0 5px var(--glow-dim);
+}
+
+.timeline-index {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ink-faint);
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.timeline-item h3 {
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.timeline-item p {
+  color: var(--ink-soft);
+  max-width: 56ch;
+  font-size: 0.98rem;
+}
+
+/* -----------------------------------------------------------------------
+   Mitwachsende Zeitleiste — siehe animations/process.js
+   ----------------------------------------------------------------------- */
+.timeline-line {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--glow);
+  transform: scaleY(0);
+  transform-origin: top;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .timeline-item::before {
+    left: -29px;
+  }
+}

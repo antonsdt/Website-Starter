@@ -10,16 +10,18 @@
    Animation als mit unsichtbarem Inhalt.
    ----------------------------------------------------------------------- */
 import './style.css';
+import { initStarfield } from './animations/starfield.js';
 import { initHero } from './animations/hero.js';
 import { initReveal } from './animations/reveal.js';
 import { initHeader } from './animations/header.js';
-import { initTimeline } from './animations/timeline.js';
+import { initProcess } from './animations/process.js';
 import { initForm } from './animations/form.js';
 
 try {
+  initStarfield();
   initHero();
   initReveal();
-  initTimeline();
+  initProcess();
   initHeader();
   initForm();
 } catch (error) {
